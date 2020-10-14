@@ -1,6 +1,9 @@
 import express,{Application} from 'express';
+import morgan from 'morgan'
+import cors from 'cors'
 
 import indexRoutes from './routes/indexRoutes'
+import systemUserRoutes from './routes/systemUserRoutes'
 
 class Server{
 
@@ -13,10 +16,15 @@ class Server{
 
     config():void{
          this.app.set('port', process.env.PORT || 3000)
+         this.app.use(morgan('dev'))
+         this.app.use(cors())
+         this.app.use(express.json())
+         this.app.use(express.urlencoded({extended: false}))
     }
 
-    routes():void{
+    routes():void{0
         this.app.use(indexRoutes);
+        this.app.use('/api/users',systemUserRoutes)
     }
 
     start():void{
