@@ -1,4 +1,5 @@
 import {Router} from 'express';
+import systemUserController from '../controllers/systemUserController'
 
 class SystemUserRoutes{
 
@@ -9,9 +10,7 @@ class SystemUserRoutes{
     }
 
     config():void{
-        this.router.get('/', (req, res) =>{
-            res.send('Users')
-        });
+        this.router.get('/', systemUserController.getUser)
 
     }
 
