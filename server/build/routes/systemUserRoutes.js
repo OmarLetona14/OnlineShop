@@ -11,7 +11,11 @@ class SystemUserRoutes {
         this.config();
     }
     config() {
-        this.router.get('/', systemUserController_1.default.getUser);
+        this.router.get('/', systemUserController_1.default.getAll);
+        this.router.get('/:id', systemUserController_1.default.getOne);
+        this.router.post('/', systemUserController_1.default.insert);
+        this.router.put('/:id', systemUserController_1.default.edit);
+        this.router.delete('/:id', systemUserController_1.default.delete);
     }
 }
 const systemUserRoutes = new SystemUserRoutes();

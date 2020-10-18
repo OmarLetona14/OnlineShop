@@ -10,8 +10,11 @@ class SystemUserRoutes{
     }
 
     config():void{
-        this.router.get('/', systemUserController.getUser)
-
+        this.router.get('/', systemUserController.getAll);
+        this.router.get('/:id', systemUserController.getOne)
+        this.router.post('/', systemUserController.insert);
+        this.router.put('/:id', systemUserController.edit);
+        this.router.delete('/:id', systemUserController.delete)
     }
 
 }

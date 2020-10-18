@@ -8,10 +8,71 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+const database_1 = __importDefault(require("../config/database"));
 class SystemUserController {
-    getUser(req, res) {
+    getAll(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
+            var cn = database_1.default.db2();
+            yield cn.exec("SELECT * FROM SYSTEMUSER", [], (result, err) => {
+                if (err)
+                    throw err;
+                res.json(result);
+            });
+        });
+    }
+    insert(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            var cn = database_1.default.db2();
+            let params = [req.body.names, req.body.last_name, req.body.email, req.body.user_password, req.body.birthdate,
+                req.body.user_type, req.body.country_name, req.body.image_path];
+            let sql = 'call insert_user (:A, :B, :C, :D, :E, :F, :G, :H)';
+            console.log(params);
+            yield cn.exec(sql, params, (result, err) => {
+                if (err)
+                    throw err;
+                res.json(result);
+            });
+        });
+    }
+    edit(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            var cn = database_1.default.db2();
+            let sql = "call  edit_user (:A,:B,:C,:D,:E,:F,:G)";
+            let params = [req.body.names, req.body.last_name, req.body.user_password, req.body.birthdate,
+                req.body.country_name, req.body.image_path, req.params.id];
+            yield cn.exec(sql, params, (result, err) => {
+                if (err)
+                    throw err;
+                res.json(result);
+            });
+        });
+    }
+    delete(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            var cn = database_1.default.db2();
+            let params = [req.params.id];
+            let sql = "delete from systemUser where idSystemUser = :A";
+            yield cn.exec(sql, params, (result, err) => {
+                if (err)
+                    throw err;
+                res.json(result);
+            });
+        });
+    }
+    getOne(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            var cn = database_1.default.db2();
+            var sql = "select * from systemUser where idSystemUser = :A";
+            var params = [req.params.id];
+            yield cn.exec(sql, params, (result, err) => {
+                if (err)
+                    throw err;
+                res.json(result);
+            });
         });
     }
 }
