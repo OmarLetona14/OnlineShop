@@ -3,7 +3,8 @@ export interface Product{
     product_name?: string;
     product_detail?: string; 
     price?: number;
-    category_name?: string; 
+    category_name?: string;
+    idSystemUser?: number;
     names?:string;
     last_name?:string; 
     publish_date?:string; 

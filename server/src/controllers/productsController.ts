@@ -5,8 +5,7 @@ class ProductsController{
 
     async getAll(req:Request, res:Response){
         var cn = db.db2()
-        await cn.exec(`
-        select p.idPublication, p.product_name, p.product_detail, p.price, pc.category_name, s.names, s.last_name, p.publish_date, p.image_path, p.visible_publication from publication p 
+        await cn.exec(`select p.idPublication, p.product_name, p.product_detail, p.price, pc.category_name, s.idsystemuser, s.names, s.last_name, p.publish_date, p.image_path, p.visible_publication from publication p 
         inner join product_category pc on p.idproduct_category = pc.idproduct_category
         inner join systemUser s on p.idsystemuser = s.idsystemuser`,[],(result:any, err:any)=>{
             if (err) throw err;

@@ -5,6 +5,7 @@ import {HomeWebComponent} from './components/home-web/home-web.component';
 import {ProductsListComponent} from './components/products-list/products-list.component';
 import {AddProductComponent} from './components/add-product/add-product.component'
 import {UserRegisterComponent} from './components/user-register/user-register.component'
+import {AddCategoryComponent} from './components/add-category/add-category.component'
 
 
 const routes: Routes = [
@@ -28,6 +29,10 @@ const routes: Routes = [
   {
     path: 'register',
     component:UserRegisterComponent
+  },
+  {
+    path: 'categories/add',
+    component:AddCategoryComponent
   }
 ];
 

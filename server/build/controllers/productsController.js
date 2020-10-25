@@ -17,8 +17,7 @@ class ProductsController {
     getAll(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             var cn = database_1.default.db2();
-            yield cn.exec(`
-        select p.idPublication, p.product_name, p.product_detail, p.price, pc.category_name, s.names, s.last_name, p.publish_date, p.image_path, p.visible_publication from publication p 
+            yield cn.exec(`select p.idPublication, p.product_name, p.product_detail, p.price, pc.category_name, s.idsystemuser, s.names, s.last_name, p.publish_date, p.image_path, p.visible_publication from publication p 
         inner join product_category pc on p.idproduct_category = pc.idproduct_category
         inner join systemUser s on p.idsystemuser = s.idsystemuser`, [], (result, err) => {
                 if (err)

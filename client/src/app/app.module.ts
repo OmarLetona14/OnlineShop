@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {HttpClientModule} from '@angular/common/http'
+import {FormsModule} from '@angular/forms'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,7 +13,10 @@ import { HomeWebComponent } from './components/home-web/home-web.component';
 
 
 import {ProductsService} from './services/products.service';
-import { AddProductComponent } from './components/add-product/add-product.component'
+import {CategoriesService} from './services/categories.service'
+
+import { AddProductComponent } from './components/add-product/add-product.component';
+import { AddCategoryComponent } from './components/add-category/add-category.component'
 
 @NgModule({
   declarations: [
@@ -22,15 +26,18 @@ import { AddProductComponent } from './components/add-product/add-product.compon
     ProductsListComponent,
     NavigationComponent,
     HomeWebComponent,
-    AddProductComponent
+    AddProductComponent,
+    AddCategoryComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [
-    ProductsService
+    ProductsService,
+    CategoriesService
   ],
   bootstrap: [AppComponent]
 })
