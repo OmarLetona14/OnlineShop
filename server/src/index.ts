@@ -4,6 +4,8 @@ import cors from 'cors'
 
 import indexRoutes from './routes/indexRoutes'
 import systemUserRoutes from './routes/systemUserRoutes'
+import productRoutes from './routes/productRoutes'
+import productCategoryRoutes from './routes/productCategoryRoutes'
 
 class Server{
 
@@ -22,9 +24,11 @@ class Server{
          this.app.use(express.urlencoded({extended: true}))
     }
 
-    routes():void{0
+    routes():void{
         this.app.use(indexRoutes);
-        this.app.use('/api/users',systemUserRoutes)
+        this.app.use('/api/users',systemUserRoutes);
+        this.app.use('/api/products', productRoutes);
+        this.app.use('/api/categories', productCategoryRoutes)
     }
 
     start():void{

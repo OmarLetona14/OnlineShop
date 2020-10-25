@@ -26,7 +26,7 @@ function db2() {
                     }
                     connection.execute(queryEst, params, {
                         outFormat: oracledb_1.default.OBJECT,
-                        autoCommit: true,
+                        autoCommit: true
                     }, function (err, result) {
                         if (err) {
                             console.log(err.message);
@@ -50,7 +50,7 @@ function db2() {
             return __awaiter(this, void 0, void 0, function* () {
                 oracledb_1.default.getConnection(keys_1.default.database, function (err, connection) {
                     if (err) {
-                        console.log('Connection error2');
+                        console.log('Connection error');
                         console.error(err.message);
                         callback();
                     }
@@ -78,6 +78,108 @@ function db2() {
                     });
                 }
             });
+        },
+        execMany(statement, binds) {
+            let options = {
+                autoCommit: true,
+                batchErrors: true,
+                outFormat: oracledb_1.default.OBJECT
+            };
+            var r;
+            oracledb_1.default.getConnection(keys_1.default.database, function (err, connection) {
+                connection.executeMany(statement, binds, options, function (err, result) {
+                    if (err) {
+                        r = -1;
+                        console.log(err);
+                    }
+                    else {
+                        console.log(result);
+                        r = result;
+                        return (result);
+                    }
+                });
+            });
+            return r;
+            /*return new Promise(async (resolve, reject)=>{
+                let conn;
+               
+                try {
+                    conn = await oracledb.getConnection(keys.database);
+                    const result = await conn.executeMany(statement,binds,options);
+                    conn.commit();
+                    console.log(result);
+                    resolve(result);
+                } catch (error) {
+                    console.log(error);
+                    reject(error);
+                }
+                finally{
+                    if(conn){
+                        try{
+                            await conn.close();
+                        }
+                        catch(error){
+                            console.log(error);
+                        }
+                    }
+                }
+            });*/
+        },
+        execwcursor: function (queryEst, params, callback) {
+            var resultCallBack = [];
+            oracledb_1.default.getConnection(keys_1.default.database, function (err, connection) {
+                if (err) {
+                    console.log('Connection Error');
+                    console.error(err.message);
+                    callback();
+                }
+                connection.execute(queryEst, params, {
+                    outFormat: oracledb_1.default.OBJECT,
+                    autoCommit: true
+                }, function (err, result) {
+                    if (err) {
+                        console.error(err.message);
+                        doRelease(connection);
+                        callback(err);
+                    }
+                    else {
+                        fetchRowsFromRS(connection, result.resultSet, 100);
+                    }
+                });
+            });
+            function fetchRowsFromRS(connection, resultSet, numRows) {
+                resultSet.getRows(numRows, function (err, rows) {
+                    if (err) {
+                        console.log(err);
+                        doClose(connection, resultSet);
+                    }
+                    else if (rows.length == 0) {
+                        doClose(connection, resultSet);
+                        callback(resultCallBack);
+                    }
+                    else if (rows.length > 0) {
+                        rows.array.forEach(function (element) {
+                            resultCallBack.push(element);
+                        });
+                        fetchRowsFromRS(connection, resultSet, numRows);
+                    }
+                });
+            }
+            function doRelease(connection) {
+                connection.release(function (err) {
+                    if (err) {
+                        console.error(err.message);
+                    }
+                });
+            }
+            function doClose(connection, resultSet) {
+                resultSet.close(function (err) {
+                    if (err) {
+                        console.error(err.message);
+                    }
+                    doRelease(connection);
+                });
+            }
         }
     };
     return connection;
