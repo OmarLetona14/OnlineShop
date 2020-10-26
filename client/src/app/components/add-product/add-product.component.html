@@ -21,7 +21,10 @@
                     <div class="form-group">
                         <input type="url" name="image_path" id="image_path" [(ngModel)]="product.image_path" [ngModelOptions]="{standalone: true}" placeholder="Link de la imagen" class="form-control">
                     </div>
-                    <button class="btn btn-primary btn-block" (click)="createPublish">Publicar</button>
+                    <div class="form-group">
+                        <img [src]="product.image_path" class="card-img" alt="">
+                    </div>
+                    <button class="btn btn-primary btn-block" (click)="createPublish()">Publicar</button>
                 </form>
             </div>
         </div>

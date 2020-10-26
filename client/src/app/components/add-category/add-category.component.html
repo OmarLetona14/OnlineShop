@@ -1,27 +1,14 @@
 <div class="row">
     <div class="col-md-4 offset-md-4">
-        <h2>Realizar publicacion</h2>
+        <h2>Agregar categoria</h2>
         <div class="card">
             <div class="card-body">
                 <form>
                     <div class="form-group">
-                        <input type="text" name="product_name" id="product_name" [(ngModel)]="product.product_name" [ngModelOptions]="{standalone: true}" placeholder="Nombre del producto" class="form-control" autofocus>
+                        <input type="text" name="category_name" id="category_name" [(ngModel)]="category.category_name"
+                         [ngModelOptions]="{standalone: true}" placeholder="Nombre de la categoria" class="form-control" autofocus>
                     </div>
-                    <div class="form-group">
-                        <input type="text" name="product_detail" id="product_detail" [(ngModel)]="product.product_detail" [ngModelOptions]="{standalone: true}" placeholder="Detalle del producto" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <input type="number" name="price" id="price" [(ngModel)]="product.price" [ngModelOptions]="{standalone: true}" min="1" step="any" placeholder="Precio" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <select class="form-control form-control-sm" [(ngModel)]="product.category_name" [ngModelOptions]="{standalone: true}" aria-placeholder="Categoria">
-                            <option *ngFor="let category of categories">{{category.CATEGORY_NAME}}</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <input type="url" name="image_path" id="image_path" [(ngModel)]="product.image_path" [ngModelOptions]="{standalone: true}" placeholder="Link de la imagen" class="form-control">
-                    </div>
-                    <button class="btn btn-primary btn-block" (click)="createPublish">Publicar</button>
+                    <button class="btn btn-primary btn-block" (click)="createCategory()">Agregar</button>
                 </form>
             </div>
         </div>

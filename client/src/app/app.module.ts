@@ -11,12 +11,14 @@ import {NavigationComponent} from './components/navigation/navigation.component'
 import { ProductsListComponent } from './components/products-list/products-list.component';
 import { HomeWebComponent } from './components/home-web/home-web.component';
 
-
 import {ProductsService} from './services/products.service';
 import {CategoriesService} from './services/categories.service'
 
 import { AddProductComponent } from './components/add-product/add-product.component';
-import { AddCategoryComponent } from './components/add-category/add-category.component'
+import { AddCategoryComponent } from './components/add-category/add-category.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { ProductDetailComponent } from './components/product-detail/product-detail.component';
+import { EditProductComponent } from './components/edit-product/edit-product.component'
 
 @NgModule({
   declarations: [
@@ -27,7 +29,10 @@ import { AddCategoryComponent } from './components/add-category/add-category.com
     NavigationComponent,
     HomeWebComponent,
     AddProductComponent,
-    AddCategoryComponent
+    AddCategoryComponent,
+    UserProfileComponent,
+    ProductDetailComponent,
+    EditProductComponent
   ],
   imports: [
     BrowserModule,

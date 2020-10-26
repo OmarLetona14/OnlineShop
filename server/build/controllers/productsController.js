@@ -48,7 +48,7 @@ class ProductsController {
             yield cn.exec(sql, params, (result, err) => {
                 if (err)
                     throw err;
-                res.json(result);
+                res.json({ "msg": "The product was updated" });
             });
         });
     }
@@ -60,7 +60,7 @@ class ProductsController {
             yield cn.exec(sql, params, (result, err) => {
                 if (err)
                     throw err;
-                res.json(result);
+                res.json({ "msg": "The product was deleted" });
             });
         });
     }

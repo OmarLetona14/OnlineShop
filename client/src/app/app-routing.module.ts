@@ -6,7 +6,7 @@ import {ProductsListComponent} from './components/products-list/products-list.co
 import {AddProductComponent} from './components/add-product/add-product.component'
 import {UserRegisterComponent} from './components/user-register/user-register.component'
 import {AddCategoryComponent} from './components/add-category/add-category.component'
-
+import {UserProfileComponent} from './components/user-profile/user-profile.component'
 
 const routes: Routes = [
   {
@@ -27,12 +27,20 @@ const routes: Routes = [
     component:AddProductComponent
   },
   {
+    path: 'myproducts/edit',
+    component:AddProductComponent
+  },
+  {
     path: 'register',
     component:UserRegisterComponent
   },
   {
     path: 'categories/add',
     component:AddCategoryComponent
+  },
+  {
+    path: 'profile',
+    component:UserProfileComponent
   }
 ];
 

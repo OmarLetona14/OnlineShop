@@ -31,7 +31,7 @@ class ProductsController{
             req.body.country_name, req.body.image_path, req.params.id]
         await cn.exec(sql, params, (result:any, err:any)=>{
             if (err) throw err;
-            res.json(result);
+            res.json({"msg":"The product was updated"})
         });
     }
 
@@ -41,7 +41,7 @@ class ProductsController{
         let sql = "delete from systemUser where idSystemUser = :A" 
         await cn.exec(sql, params, (result:any, err:any)=>{
             if (err) throw err;
-            res.json(result)
+            res.json({"msg":"The product was deleted"})
         });
     }
 

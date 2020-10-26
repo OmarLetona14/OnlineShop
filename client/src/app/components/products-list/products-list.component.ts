@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostBinding, OnInit } from '@angular/core';
 import { Product } from 'src/app/models/product';
 import {ProductsService} from '../../services/products.service'
 
@@ -9,11 +9,13 @@ import {ProductsService} from '../../services/products.service'
 })
 export class ProductsListComponent implements OnInit {
 
+  @HostBinding('class') classes = 'row'
   products:any = [];
 
   constructor(private productService:ProductsService) { }
 
-  ngOnInit(): void {
+
+  getProducts():void{
     this.productService.getProducts().subscribe(
       res => {
         console.log(res)
@@ -21,6 +23,21 @@ export class ProductsListComponent implements OnInit {
       },
       err => console.error(err)
     );
+  }
+  ngOnInit(): void {
+    this.getProducts()
+  }
+
+  delete(id:string){
+    this.productService.deleteProduct(id).subscribe(
+      res=>{
+        console.log(res)
+        this.getProducts()
+      },
+      err=>{
+        console.error(err)
+      }
+    )
   }
 
 }

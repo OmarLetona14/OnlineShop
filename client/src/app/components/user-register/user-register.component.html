@@ -5,23 +5,30 @@
             <div class="card-body">
                 <form>
                     <div class="form-group">
-                        <input type="text" name="names" id="names" placeholder="Nombres" class="form-control" autofocus>
+                        <input type="text" name="names" id="names" [(ngModel)]="user.names" [ngModelOptions]="{standalone: true}" placeholder="Nombres" class="form-control" autofocus>
                     </div>
                     <div class="form-group">
-                        <input type="text" name="last_name" id="last_name" placeholder="Apellidos" class="form-control">
+                        <input type="text" name="last_name" id="last_name" [(ngModel)]="user.last_name" [ngModelOptions]="{standalone: true}" placeholder="Apellidos" class="form-control">
                     </div>
                     <div class="form-group">
-                        <input type="email" name="email" id="email" placeholder="Correo electronico" class="form-control">
+                        <input type="email" name="email" id="email" [(ngModel)]="user.email" [ngModelOptions]="{standalone: true}" placeholder="Correo electronico" class="form-control">
                     </div>
                     <div class="form-group">
-                        <input type="password" name="user_password" id="user_password" placeholder="Password" class="form-control">
+                        <input type="password" name="user_password" id="user_password" [(ngModel)]="user.user_password" [ngModelOptions]="{standalone: true}" placeholder="Password" class="form-control">
                     </div>
                     <div class="form-group">
-                        <input type="date" name="birthdate" id="birthdate" placeholder="Fecha de nacimiento" class="form-control">
+                        <input type="date" name="birthdate" id="birthdate" [(ngModel)]="user.birthdate" [ngModelOptions]="{standalone: true}" placeholder="Fecha de nacimiento" class="form-control">
                     </div>
                     <div class="form-group">
-                        <input type="url" name="image_path" id="image_path" placeholder="Link de su foto de perfil" class="form-control">
+                        <input type="text" name="country_name" id="country_name" [(ngModel)]="user.country_name" [ngModelOptions]="{standalone: true}" placeholder="Pais" class="form-control">
                     </div>
+                    <div class="form-group">
+                        <input type="url" name="image_path" id="image_path" [(ngModel)]="user.image_path" [ngModelOptions]="{standalone: true}" placeholder="Link de su foto de perfil" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <img [src]="user.image_path == '' ? 'http://localhost:8080/no_profile.png': user.image_path" class="card-img" alt="">
+                    </div>
+                    <button class="btn btn-primary btn-block" (click)="register()">Registrarse</button>
                 </form>
             </div>
         </div>

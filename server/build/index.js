@@ -10,6 +10,7 @@ const indexRoutes_1 = __importDefault(require("./routes/indexRoutes"));
 const systemUserRoutes_1 = __importDefault(require("./routes/systemUserRoutes"));
 const productRoutes_1 = __importDefault(require("./routes/productRoutes"));
 const productCategoryRoutes_1 = __importDefault(require("./routes/productCategoryRoutes"));
+const loginRoutes_1 = __importDefault(require("./routes/loginRoutes"));
 class Server {
     constructor() {
         this.app = express_1.default();
@@ -28,6 +29,7 @@ class Server {
         this.app.use('/api/users', systemUserRoutes_1.default);
         this.app.use('/api/products', productRoutes_1.default);
         this.app.use('/api/categories', productCategoryRoutes_1.default);
+        this.app.use('/api/login', loginRoutes_1.default);
     }
     start() {
         this.app.listen(this.app.get('port'), () => {
