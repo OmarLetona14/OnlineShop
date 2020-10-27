@@ -1,5 +1,12 @@
+<div class="container">
+    <form class="form-inline">
+        <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+</div>
+<div class="container"><p></p></div>
 <div class="col-md-4" *ngFor = "let product of products">
-    <div class="card text-center">
+    <div class="card text-center shadow p-3 mb-5 bg-white rounded">
         <div class="car-header bg-dark text-white align-items-center">
             <h4>{{product.PRODUCT_NAME}}  <button class="btn btn-danger" (click)="delete(product.IDPUBLICATION)"><i class="fas fa-trash-alt"></i></button></h4>
         </div>
@@ -8,8 +15,8 @@
             <p>{{product.PRODUCT_DETAIL}}</p>
             <p class="font-weight-bold">Precio: Q {{product.PRICE}}</p>
             <p>Publicado: {{product.PUBLISH_DATE  | date: 'yyyy-MM-dd HH:mm'}}</p>
-            <a href="" class="btn btn-info btn-block">Edit info <i class="fas fa-edit"></i></a>
-            <a href="" class="btn btn-info btn-block">Detalles del producto <i class="fas fa-info-circle"></i></a>
+            <a class="btn btn-info btn-block" [routerLink]="['/myproducts/edit', product.IDPUBLICATION]">Edit info <i class="fas fa-edit"></i></a>
+            <a class="btn btn-info btn-block">Detalles del producto <i class="fas fa-info-circle"></i></a>
         </div>
     </div>
 </div>

@@ -7,7 +7,7 @@ import {ProductsService} from '../../services/products.service'
   templateUrl: './products-list.component.html',
   styleUrls: ['./products-list.component.css']
 })
-export class ProductsListComponent implements OnInit {
+export class ProductsListComponent {
 
   @HostBinding('class') classes = 'row'
   products:any = [];
@@ -18,7 +18,6 @@ export class ProductsListComponent implements OnInit {
   getProducts():void{
     this.productService.getProducts().subscribe(
       res => {
-        console.log(res)
         this.products = res;
       },
       err => console.error(err)
@@ -39,5 +38,4 @@ export class ProductsListComponent implements OnInit {
       }
     )
   }
-
 }

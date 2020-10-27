@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import {CategoriesService} from '../../services/categories.service'
 import {Product} from '../../models/product'
 import { ProductsService } from 'src/app/services/products.service';
+import {Router, ActivatedRoute} from '@angular/router'
 
 @Component({
   selector: 'app-add-product',
@@ -25,18 +26,48 @@ export class AddProductComponent implements OnInit {
     visible_publication:""
   };
 
-  constructor(private categoriesService:CategoriesService, private productsService:ProductsService) { }
+  public keyword_str:string
+
+  constructor(private categoriesService:CategoriesService, private productsService:ProductsService, private router:Router, private activedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
     this.categoriesService.getCategories().subscribe(
       res=>{
         this.categories = res;
-        
       },
       err => {
         console.error(err)
       }
     );
+    const params = this.activedRoute.snapshot.params
+    if (params.id){
+      this.productsService.getProduct(params.id).subscribe(
+        res =>{
+          this.product.product_name = res[0].PRODUCT_NAME
+          this.product.product_detail = res[0].PRODUCT_DETAIL
+          this.product.price = res[0].PRICE
+          this.product.category_name = res[0].CATEGORY_NAME
+          this.product.image_path = res[0].IMAGE_PATH
+        },
+        err =>{
+          console.error(err);
+        }
+      )
+    }
+  }
+
+  addKeyword(){
+    const _span = document.createElement('span');
+    _span.setAttribute('class','badge badge-pill badge-success');
+    _span.textContent = this.keyword_str
+    document.getElementById('keywords').appendChild(_span);
+  } 
+
+  deleteKeywords(){
+    const container = document.getElementById('keywords');
+    while (container.firstChild) {
+      container.removeChild(container.lastChild);
+    }
   }
 
   public createPublish():void{
@@ -48,6 +79,7 @@ export class AddProductComponent implements OnInit {
     this.productsService.saveProduct(this.product).subscribe(
       res=>{
         console.log(res)
+        this.router.navigate(['/home'])
       },
       err =>{
         console.error(err)

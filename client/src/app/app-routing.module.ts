@@ -7,6 +7,7 @@ import {AddProductComponent} from './components/add-product/add-product.componen
 import {UserRegisterComponent} from './components/user-register/user-register.component'
 import {AddCategoryComponent} from './components/add-category/add-category.component'
 import {UserProfileComponent} from './components/user-profile/user-profile.component'
+import {EditProductComponent} from './components/edit-product/edit-product.component'
 
 const routes: Routes = [
   {
@@ -27,7 +28,7 @@ const routes: Routes = [
     component:AddProductComponent
   },
   {
-    path: 'myproducts/edit',
+    path: 'myproducts/edit/:id',
     component:AddProductComponent
   },
   {

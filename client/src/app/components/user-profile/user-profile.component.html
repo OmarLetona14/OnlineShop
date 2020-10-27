@@ -2,23 +2,23 @@
     <div class="row">
       <div class="col">
         <label class="form-group">Nombres</label>
-        <input type="text" name="names" id="names" class="form-control" placeholder="Nombres">
+        <input type="text" name="names" id="names" [(ngModel)]="user.names" [ngModelOptions]="{standalone: true}" class="form-control" placeholder="Nombres">
       </div>
       <div class="col">
         <label class="form-group">Apellidos</label>
-        <input type="text" name="last_name" id="last_name" class="form-control" placeholder="Apellidos">
+        <input type="text" name="last_name" id="last_name" [(ngModel)]="user.last_name" [ngModelOptions]="{standalone: true}" class="form-control" placeholder="Apellidos">
       </div>
     </div>
     <div class="row">
         <div class="col">
             <label class="form-group">Password</label>
-            <input type="password" name="user_password" id="user_password" class="form-control" placeholder="Password">
+            <input type="password" name="user_password" id="user_password" [(ngModel)]="user.user_password" [ngModelOptions]="{standalone: true}" class="form-control" placeholder="Password">
             <p></p>
             <input type="checkbox">Show Password
           </div>
           <div class="col">
             <label class="form-group">Imagen</label>
-            <input type="url" name="image_path" id="image_path" class="form-control" placeholder="URL de la imagen">
+            <input type="url" name="image_path" id="image_path" [(ngModel)]="user.image_path" [ngModelOptions]="{standalone: true}" class="form-control" placeholder="URL de la imagen">
           </div>
     </div>
 </form>
