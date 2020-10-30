@@ -1,6 +1,6 @@
 <div class="container">
     <form class="form-inline">
-        <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+        <input class="form-control" type="search" placeholder="Search" aria-label="Search" autofocus>
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
 </div>
@@ -8,15 +8,22 @@
 <div class="col-md-4" *ngFor = "let product of products">
     <div class="card text-center shadow p-3 mb-5 bg-white rounded">
         <div class="car-header bg-dark text-white align-items-center">
-            <h4>{{product.PRODUCT_NAME}}  <button class="btn btn-danger" (click)="delete(product.IDPUBLICATION)"><i class="fas fa-trash-alt"></i></button></h4>
+            <h4>{{product.PRODUCT_NAME}}  <button *ngIf= "user.idSystemUser == product.IDSYSTEMUSER" class="btn btn-danger" (click)="delete(product.IDPUBLICATION)">
+                <i class="fas fa-trash-alt"></i></button>
+                <button *ngIf= "user.idSystemUser != product.IDSYSTEMUSER" class="btn btn-danger" (click)="addToCart()">
+                    <i class="fas fa-shopping-cart"></i></button>
+            </h4>
         </div>
         <img src="{{product.IMAGE_PATH}}" class="card-img-top">
         <div class="card-body">
             <p>{{product.PRODUCT_DETAIL}}</p>
             <p class="font-weight-bold">Precio: Q {{product.PRICE}}</p>
             <p>Publicado: {{product.PUBLISH_DATE  | date: 'yyyy-MM-dd HH:mm'}}</p>
-            <a class="btn btn-info btn-block" [routerLink]="['/myproducts/edit', product.IDPUBLICATION]">Edit info <i class="fas fa-edit"></i></a>
-            <a class="btn btn-info btn-block">Detalles del producto <i class="fas fa-info-circle"></i></a>
+            <a *ngIf= "user.idSystemUser == product.IDSYSTEMUSER" class="btn btn-info btn-block" [routerLink]="['/myproducts/edit', product.IDPUBLICATION]">Edit info <i class="fas fa-edit"></i></a>
+            <a class="btn btn-info btn-block" [routerLink]="['/details', product.IDPUBLICATION]">Detalles del producto <i class="fas fa-info-circle"></i></a>
+            <div class="container" *ngFor = "let keyword of keywords">
+                <div class="span">{{keyword.word}}</div>
+            </div>
         </div>
     </div>
 </div>

@@ -1,4 +1,20 @@
-<form>
+
+<div class="row justify-content-center">
+  <div class="col">
+    <div class="jumbotron">
+      <h2> Perfil del usuario: <strong>{{user.names}} {{user.last_name}}</strong> </h2>
+      <h4>Correo: {{user.email}}</h4> <h4>Creditos disponibles: {{user.credits}}</h4>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card border-0">
+      <img [src]="user.image_path == '' ? 'http://localhost:8080/no_profile.png': user.image_path" width="150" height="200" 
+      class="rounded-circle img-fluid" alt="">
+    </div>
+  </div>
+</div>
+<div class="card border-0">
+  <form>
     <div class="row">
       <div class="col">
         <label class="form-group">Nombres</label>
@@ -17,8 +33,25 @@
             <input type="checkbox">Show Password
           </div>
           <div class="col">
-            <label class="form-group">Imagen</label>
-            <input type="url" name="image_path" id="image_path" [(ngModel)]="user.image_path" [ngModelOptions]="{standalone: true}" class="form-control" placeholder="URL de la imagen">
+            <label class="form-group">Pais</label>
+            <input type="text" name="country_name" id="country_name" [(ngModel)]="user.country_name" [ngModelOptions]="{standalone: true}" class="form-control"
+             placeholder="Pais">
           </div>
     </div>
+    <div class="row">
+      <div class="col">
+        <label class="form-group">Fecha de nacimiento </label>
+        <input type="date" name="birthdate" id="birthdate" [(ngModel)]="user.birthdate" [ngModelOptions]="{standalone: true}" class="form-control" 
+        placeholder="Fecha de nacimiento">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+          <label class="form-group">Imagen</label>
+          <input type="url" name="image_path" id="image_path" [(ngModel)]="user.image_path" [ngModelOptions]="{standalone: true}" class="form-control"
+           placeholder="Link de la imagen">
+          <p></p>
+      </div>
+  </div>
 </form>
+</div>

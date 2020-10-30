@@ -14,12 +14,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const database_1 = __importDefault(require("../config/database"));
 class ProductsController {
-    getAll(req, res) {
+    getAllFromPublication(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             var cn = database_1.default.db2();
-            yield cn.exec(`select p.idPublication, p.product_name, p.product_detail, p.price, pc.category_name, s.idsystemuser, s.names, s.last_name, p.publish_date, p.image_path, p.visible_publication from publication p 
-        inner join product_category pc on p.idproduct_category = pc.idproduct_category
-        inner join systemUser s on p.idsystemuser = s.idsystemuser`, [], (result, err) => {
+            let id = req.params.id;
+            yield cn.exec(`select cm.idComment_publication, cm.publish_date, cm.comment_content, s.names, s.last_name, s.image_path
+        from comment_publication cm 
+        inner join systemuser s on s.idsystemuser = cm.idsystemuser
+        where cm.idpublication = :A`, [id], (result, err) => {
                 if (err)
                     throw err;
                 res.json(result);
@@ -29,9 +31,8 @@ class ProductsController {
     insert(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             var cn = database_1.default.db2();
-            let params = [req.body.product_name, req.body.product_detail, req.body.price, req.body.category_name, req.body.idSystemUser,
-                req.body.image_path];
-            let sql = `call insert_publication(:A, :B, :C, :D, :F, :G)`;
+            let params = [req.body.content, req.body.idsystemuser, req.body.idpublication];
+            let sql = `call insert_comment(:A, :B, :C)`;
             yield cn.exec(sql, params, (result, err) => {
                 if (err)
                     throw err;

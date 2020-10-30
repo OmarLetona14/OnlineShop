@@ -7,6 +7,8 @@ import systemUserRoutes from './routes/systemUserRoutes'
 import productRoutes from './routes/productRoutes'
 import productCategoryRoutes from './routes/productCategoryRoutes'
 import loginRoutes from './routes/loginRoutes'
+import keywordRoutes from './routes/keywordRoutes'
+import myproductsRoutes from './routes/myproductsRoutes'
 
 class Server{
 
@@ -31,6 +33,8 @@ class Server{
         this.app.use('/api/products', productRoutes);
         this.app.use('/api/categories', productCategoryRoutes);
         this.app.use('/api/login', loginRoutes);
+        this.app.use('/api/keyword', keywordRoutes);
+        this.app.use('/api/myproducts', myproductsRoutes);
     }
 
     start():void{

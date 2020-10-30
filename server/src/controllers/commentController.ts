@@ -3,11 +3,13 @@ import db from '../config/database'
 
 class ProductsController{
 
-    async getAll(req:Request, res:Response){
+    async getAllFromPublication(req:Request, res:Response){
         var cn = db.db2()
-        await cn.exec(`select p.idPublication, p.product_name, p.product_detail, p.price, pc.category_name, s.idsystemuser, s.names, s.last_name, p.publish_date, p.image_path, p.visible_publication from publication p 
-        inner join product_category pc on p.idproduct_category = pc.idproduct_category
-        inner join systemUser s on p.idsystemuser = s.idsystemuser`,[],(result:any, err:any)=>{
+        let id = req.params.id
+        await cn.exec(`select cm.idComment_publication, cm.publish_date, cm.comment_content, s.names, s.last_name, s.image_path
+        from comment_publication cm 
+        inner join systemuser s on s.idsystemuser = cm.idsystemuser
+        where cm.idpublication = :A`,[id],(result:any, err:any)=>{
             if (err) throw err;
             res.json(result)
         }); 
@@ -15,9 +17,8 @@ class ProductsController{
 
     async insert(req:Request, res:Response){
         var cn = db.db2()
-        let params = [req.body.product_name, req.body.product_detail, req.body.price, req.body.category_name,  req.body.idSystemUser,
-            req.body.image_path]
-        let sql = `call insert_publication(:A, :B, :C, :D, :F, :G)`
+        let params = [req.body.content, req.body.idsystemuser, req.body.idpublication]
+        let sql = `call insert_comment(:A, :B, :C)`
         await cn.exec(sql, params,(result:any, err:any)=>{
             if (err) throw err;
             res.json({"message:": "Creado correctamente"})

@@ -1,5 +1,6 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
 import { Product } from 'src/app/models/product';
+import {User} from '../../models/user'
 import {ProductsService} from '../../services/products.service'
 
 @Component({
@@ -14,7 +15,7 @@ export class ProductsListComponent {
 
   constructor(private productService:ProductsService) { }
 
-
+  user:User;
   getProducts():void{
     this.productService.getProducts().subscribe(
       res => {
@@ -25,6 +26,7 @@ export class ProductsListComponent {
   }
   ngOnInit(): void {
     this.getProducts()
+    this.user = JSON.parse(localStorage.getItem("currentUser"))
   }
 
   delete(id:string){

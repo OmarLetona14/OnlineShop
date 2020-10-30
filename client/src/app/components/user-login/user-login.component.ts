@@ -40,6 +40,7 @@ export class UserLoginComponent implements OnInit {
       res =>{
         if (res[0] != null){
           if (res[0].CONFIRMED == 'N'){
+            this.user.idSystemUser = res[0].IDSYSTEMUSER;
             this.user.names = res[0].NAMES;
             this.user.last_name = res[0].LAST_NAME;
             this.user.email = res[0].EMAIL;
@@ -55,11 +56,41 @@ export class UserLoginComponent implements OnInit {
             window.location.replace('/home')
             //this.router.navigate(['/home']);
           }
+        }else{
+          this.createAlert()
         }
       },
       err =>{
         console.log(err)
       }
     )
+  }
+
+  createAlert(){
+    let alt = document.getElementById('alert_login');
+    if (alt.childElementCount < 1){
+        let alert_nocredentials = document.createElement('div')
+      let strong = document.createElement('strong')
+      let btn = document.createElement('button')
+      let span = document.createElement('span');
+      span.setAttribute('aria-hidden', 'true');
+      btn.addEventListener("click", ()=>{
+        const container = document.getElementById('alert_login');
+        while (container.firstChild) {
+          container.removeChild(container.lastChild);
+        }
+      });
+      span.textContent = 'x'
+      btn.setAttribute('class', 'close');
+      btn.setAttribute('data-dismiss','alert');
+      btn.setAttribute('aria-label', 'Close');
+      btn.appendChild(span)
+      strong.textContent = 'Credenciales incorrectas'
+      alert_nocredentials.setAttribute('class', 'alert alert-warning alert-dismissible fade show')
+      alert_nocredentials.setAttribute('role','alert')
+      alert_nocredentials.appendChild(strong)
+      alert_nocredentials.appendChild(btn)
+      alt.appendChild(alert_nocredentials)
+    }
   }
 }

@@ -18,7 +18,8 @@ import { AddProductComponent } from './components/add-product/add-product.compon
 import { AddCategoryComponent } from './components/add-category/add-category.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
-import { EditProductComponent } from './components/edit-product/edit-product.component'
+import { EditProductComponent } from './components/edit-product/edit-product.component';
+import { MyproductsListComponent } from './components/myproducts-list/myproducts-list.component'
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { EditProductComponent } from './components/edit-product/edit-product.com
     AddCategoryComponent,
     UserProfileComponent,
     ProductDetailComponent,
-    EditProductComponent
+    EditProductComponent,
+    MyproductsListComponent
   ],
   imports: [
     BrowserModule,

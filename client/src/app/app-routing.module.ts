@@ -8,11 +8,14 @@ import {UserRegisterComponent} from './components/user-register/user-register.co
 import {AddCategoryComponent} from './components/add-category/add-category.component'
 import {UserProfileComponent} from './components/user-profile/user-profile.component'
 import {EditProductComponent} from './components/edit-product/edit-product.component'
+import {nodemailer} from 'nodemailer'
+import {MyproductsListComponent} from './components/myproducts-list/myproducts-list.component'
+import {ProductDetailComponent} from './components/product-detail/product-detail.component'
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/home',
+    redirectTo: '/login',
     pathMatch: 'full'
   },
   {
@@ -42,6 +45,14 @@ const routes: Routes = [
   {
     path: 'profile',
     component:UserProfileComponent
+  },
+  {
+    path: 'myproducts',
+    component: MyproductsListComponent
+  }, 
+  {
+    path: 'details/:id',
+    component: ProductDetailComponent
   }
 ];
 
