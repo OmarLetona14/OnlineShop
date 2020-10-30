@@ -13,6 +13,8 @@ const productCategoryRoutes_1 = __importDefault(require("./routes/productCategor
 const loginRoutes_1 = __importDefault(require("./routes/loginRoutes"));
 const keywordRoutes_1 = __importDefault(require("./routes/keywordRoutes"));
 const myproductsRoutes_1 = __importDefault(require("./routes/myproductsRoutes"));
+const likeRoutes_1 = __importDefault(require("./routes/likeRoutes"));
+const commentRoutes_1 = __importDefault(require("./routes/commentRoutes"));
 class Server {
     constructor() {
         this.app = express_1.default();
@@ -34,6 +36,8 @@ class Server {
         this.app.use('/api/login', loginRoutes_1.default);
         this.app.use('/api/keyword', keywordRoutes_1.default);
         this.app.use('/api/myproducts', myproductsRoutes_1.default);
+        this.app.use('/api/likes', likeRoutes_1.default);
+        this.app.use('/api/comments', commentRoutes_1.default);
     }
     start() {
         this.app.listen(this.app.get('port'), () => {

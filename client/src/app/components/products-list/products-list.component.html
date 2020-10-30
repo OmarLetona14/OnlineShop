@@ -1,13 +1,13 @@
 <div class="container">
     <form class="form-inline">
         <input class="form-control" type="search" placeholder="Search" aria-label="Search" autofocus>
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit"> Search </button>
     </form>
 </div>
 <div class="container"><p></p></div>
 <div class="col-md-4" *ngFor = "let product of products">
     <div class="card text-center shadow p-3 mb-5 bg-white rounded">
-        <div class="car-header bg-dark text-white align-items-center">
+        <div class="card-header bg-dark text-white align-items-center">
             <h4>{{product.PRODUCT_NAME}}  <button *ngIf= "user.idSystemUser == product.IDSYSTEMUSER" class="btn btn-danger" (click)="delete(product.IDPUBLICATION)">
                 <i class="fas fa-trash-alt"></i></button>
                 <button *ngIf= "user.idSystemUser != product.IDSYSTEMUSER" class="btn btn-danger" (click)="addToCart()">

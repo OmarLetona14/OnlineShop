@@ -9,6 +9,8 @@ import productCategoryRoutes from './routes/productCategoryRoutes'
 import loginRoutes from './routes/loginRoutes'
 import keywordRoutes from './routes/keywordRoutes'
 import myproductsRoutes from './routes/myproductsRoutes'
+import likesRoutes from './routes/likeRoutes'
+import commentRoutes from './routes/commentRoutes'
 
 class Server{
 
@@ -35,6 +37,8 @@ class Server{
         this.app.use('/api/login', loginRoutes);
         this.app.use('/api/keyword', keywordRoutes);
         this.app.use('/api/myproducts', myproductsRoutes);
+        this.app.use('/api/likes', likesRoutes);
+        this.app.use('/api/comments', commentRoutes)
     }
 
     start():void{

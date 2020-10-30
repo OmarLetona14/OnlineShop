@@ -2,7 +2,7 @@
 <div class="row justify-content-center">
     <div class="col">
       <div class="jumbotron">
-        <h2> Producto: <strong>{{product.product_name}}</strong> </h2>
+        <h2><strong>{{product.product_name}}</strong> <label class="float-right"><i class="fas fa-thumbs-up"></i> {{likecount}}</label> </h2>
         <h4> {{product.product_detail}}</h4>
         <h3>Precio: Q {{product.price}}</h3>
         <label class="form-group"> <strong>Fecha de publicacion: </strong>{{product.publish_date  | date: 'yyyy-MM-dd HH:mm'}}</label>
@@ -10,7 +10,7 @@
         <label class="form-group"> <strong>Categoria:</strong> {{product.category_name}}</label>
         <p></p>
         <button class="btn btn-success">Agregar al carrito  <i class="fas fa-shopping-cart"></i></button>
-        <button class="btn btn-secundary">{{likecount}}  <i class="fas fa-thumbs-up"></i></button> <p></p>
+        <button class="btn btn-secundary float-right" id="like_button" (click)="likePublication()"><i class="fas fa-thumbs-up"></i></button> <p></p>
         <button class="btn btn-primary">Reportar publicacion <i class="fas fa-exclamation-triangle"></i></button>
       </div>
     </div>
@@ -36,11 +36,20 @@
           <button class="btn btn-success"> Publicar </button>
       </div>
       <p></p>
-      <div class="row" >
-          <div class="card">
-            <h2>Comentarios</h2>
+      <h2>Comentarios</h2>
+      <div class="container" *ngFor="let comment of comments">
+          <div class="card rounded">
                 <h4 *ngIf="comments.length == 0"> <strong>Esta publicacion aun no tiene comentarios </strong></h4>
+                <div class="card-header bg-dark text-white align-items-center">
+                  <div class="card-title">
+                    <h4><strong>Usuario:</strong> {{comment.NAMES}} {{comment.LAST_NAME}}</h4> 
+                    <p class="float-right">Publicado {{comment.PUBLISH_DATE  | date: 'yyyy-MM-dd HH:mm'}}</p></div>
+                </div>
+                <div class="card-body">
+                  <p>{{comment.COMMENT_CONTENT}}</p>
+                </div>
           </div>
+          <p></p>
       </div>
   </div>
   

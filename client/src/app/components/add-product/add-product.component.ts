@@ -19,7 +19,7 @@ export class AddProductComponent implements OnInit {
   user:User;
   categories:any = []
   createdProduct: Product={
-    idPublication: 0,
+    idPublication: "",
     product_name: "",
     product_detail: "", 
     price: 0,
@@ -32,7 +32,7 @@ export class AddProductComponent implements OnInit {
     visible_publication:""
   }
   product:Product = {
-    idPublication: 0,
+    idPublication: "",
     product_name: "",
     product_detail: "", 
     price: 0,

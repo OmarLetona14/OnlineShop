@@ -13,7 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const database_1 = __importDefault(require("../config/database"));
-class ProductsController {
+class CommentController {
     getAllFromPublication(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             var cn = database_1.default.db2();
@@ -40,46 +40,6 @@ class ProductsController {
             });
         });
     }
-    edit(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            var cn = database_1.default.db2();
-            let sql = "call  edit_user (:A,:B,:C,:D,:E,:F,:G)";
-            let params = [req.body.names, req.body.last_name, req.body.user_password, req.body.birthdate,
-                req.body.country_name, req.body.image_path, req.params.id];
-            yield cn.exec(sql, params, (result, err) => {
-                if (err)
-                    throw err;
-                res.json({ "msg": "The product was updated" });
-            });
-        });
-    }
-    delete(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            var cn = database_1.default.db2();
-            let params = [req.params.id];
-            let sql = "delete from publication where idpublication = :A";
-            yield cn.exec(sql, params, (result, err) => {
-                if (err)
-                    throw err;
-                res.json({ "msg": "The product was deleted" });
-            });
-        });
-    }
-    getOne(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            var cn = database_1.default.db2();
-            var sql = `select p.idPublication, p.product_name, p.product_detail, p.price, pc.category_name, s.idsystemuser, s.names, s.last_name, p.publish_date, p.image_path, p.visible_publication from publication p 
-        inner join product_category pc on p.idproduct_category = pc.idproduct_category
-        inner join systemUser s on p.idsystemuser = s.idsystemuser
-        where idpublication = :A`;
-            var params = [req.params.id];
-            yield cn.exec(sql, params, (result, err) => {
-                if (err)
-                    throw err;
-                res.json(result);
-            });
-        });
-    }
 }
-const productsController = new ProductsController();
-exports.default = productsController;
+const commentController = new CommentController();
+exports.default = commentController;
