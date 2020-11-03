@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Category } from 'src/app/models/category';
+import {CategoriesService} from '../../services/categories.service'
 
 @Component({
   selector: 'app-add-category',
@@ -12,7 +13,7 @@ export class AddCategoryComponent implements OnInit {
     idProduct_category: 0,
     category_name: ""
   }
-  constructor() { }
+  constructor(private categoriesService:CategoriesService) { }
 
   ngOnInit(): void {
   }

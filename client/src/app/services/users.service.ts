@@ -29,7 +29,7 @@ export class UsersService {
     return this.http.delete(`${this.API_URI}/users/${id}`);
   }
 
-  updateUser (id:string, p:User): Observable <User>{
+  updateUser (id:string, p:User){
     return this.http.put(`${this.API_URI}/users/${id}`, p);
   }
 }

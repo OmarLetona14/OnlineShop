@@ -11,6 +11,7 @@ import {EditProductComponent} from './components/edit-product/edit-product.compo
 import {nodemailer} from 'nodemailer'
 import {MyproductsListComponent} from './components/myproducts-list/myproducts-list.component'
 import {ProductDetailComponent} from './components/product-detail/product-detail.component'
+import {AdminComplainComponent} from './components/admin-complain/admin-complain.component'
 
 const routes: Routes = [
   {
@@ -53,6 +54,10 @@ const routes: Routes = [
   {
     path: 'details/:id',
     component: ProductDetailComponent
+  },
+  {
+    path: 'complains',
+    component: AdminComplainComponent
   }
 ];
 

@@ -19,7 +19,9 @@ import { AddCategoryComponent } from './components/add-category/add-category.com
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 import { EditProductComponent } from './components/edit-product/edit-product.component';
-import { MyproductsListComponent } from './components/myproducts-list/myproducts-list.component'
+import { MyproductsListComponent } from './components/myproducts-list/myproducts-list.component';
+import { AdminComplainComponent } from './components/admin-complain/admin-complain.component';
+import { CategoryListComponent } from './components/category-list/category-list.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { MyproductsListComponent } from './components/myproducts-list/myproducts
     UserProfileComponent,
     ProductDetailComponent,
     EditProductComponent,
-    MyproductsListComponent
+    MyproductsListComponent,
+    AdminComplainComponent,
+    CategoryListComponent
   ],
   imports: [
     BrowserModule,

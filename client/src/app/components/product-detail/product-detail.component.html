@@ -1,7 +1,7 @@
 
 <div class="row justify-content-center">
     <div class="col">
-      <div class="jumbotron">
+      <div class="jumbotron" id="details">
         <h2><strong>{{product.product_name}}</strong> <label class="float-right"><i class="fas fa-thumbs-up"></i> {{likecount}}</label> </h2>
         <h4> {{product.product_detail}}</h4>
         <h3>Precio: Q {{product.price}}</h3>
@@ -11,7 +11,10 @@
         <p></p>
         <button class="btn btn-success">Agregar al carrito  <i class="fas fa-shopping-cart"></i></button>
         <button class="btn btn-secundary float-right" id="like_button" (click)="likePublication()"><i class="fas fa-thumbs-up"></i></button> <p></p>
-        <button class="btn btn-primary">Reportar publicacion <i class="fas fa-exclamation-triangle"></i></button>
+        <button class="btn btn-primary" (click)="complaintM()">Reportar publicacion <i class="fas fa-exclamation-triangle"></i></button>
+        <p></p>
+        <textarea class="block" name="" id="" cols="30" rows="3"  [(ngModel)]="commentComplain" [ngModelOptions]="{standalone: true}" 
+         placeholder="Razon de su denuncia" ></textarea>
       </div>
     </div>
     <div class="col">
@@ -25,15 +28,24 @@
     </div>
   </div>
   <div class="container">
+    <div class="row">
+      <div class="form-group" id="alert_complain"></div>
+    </div>
+  </div>
+  <div class="container">
       <div class="row">
           <label for="">Agregar un comentario:  </label>
       </div>
       <div class="row">
-        <textarea class="block" name="" id="" cols="30" rows="3" placeholder="Escriba su comentario... " ></textarea>
+        <textarea class="block" name="" id="" cols="30" rows="3"  [(ngModel)]="n_comment.comment_content" [ngModelOptions]="{standalone: true}" 
+         placeholder="Escriba su comentario... " ></textarea>
       </div>
       <p></p>
       <div class="row">
-          <button class="btn btn-success"> Publicar </button>
+          <button class="btn btn-success" (click)="publishComment()"> Publicar </button>
+      </div>
+      <p></p>
+      <div class="form-group" id="alert_comment">
       </div>
       <p></p>
       <h2>Comentarios</h2>
@@ -52,4 +64,6 @@
           <p></p>
       </div>
   </div>
+
+  
   

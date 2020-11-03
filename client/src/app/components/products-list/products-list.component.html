@@ -1,12 +1,23 @@
-<div class="container">
-    <form class="form-inline">
-        <input class="form-control" type="search" placeholder="Search" aria-label="Search" autofocus>
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit"> Search </button>
-    </form>
+<div class="col-md-12">
+    <div class="row">
+        <div class="col float-left">
+            <input class="form-control" type="search" placeholder="Search" aria-label="Search" autofocus>
+            <p></p>
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit"> Search </button>
+        </div>
+        <div class="col float-right">
+            <select class="form-control form-control-sm" [(ngModel)]="categoryName" [ngModelOptions]="{standalone: true}" aria-placeholder="Categoria">
+                <option *ngFor="let category of categories">{{category.CATEGORY_NAME}}</option>
+            </select>
+        </div>
+        <div class="col float-right">
+            <input class="form-control" type="search" placeholder="Search" aria-label="Search" autofocus>
+        </div>
+    </div>
 </div>
 <div class="container"><p></p></div>
 <div class="col-md-4" *ngFor = "let product of products">
-    <div class="card text-center shadow p-3 mb-5 bg-white rounded">
+    <div class="card text-center shadow p-3 mb-5 bg-white rounded" *ngIf="product.VISIBLE_PUBLICATION == 'Y'">
         <div class="card-header bg-dark text-white align-items-center">
             <h4>{{product.PRODUCT_NAME}}  <button *ngIf= "user.idSystemUser == product.IDSYSTEMUSER" class="btn btn-danger" (click)="delete(product.IDPUBLICATION)">
                 <i class="fas fa-trash-alt"></i></button>

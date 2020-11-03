@@ -50,11 +50,19 @@ export class UserLoginComponent implements OnInit {
             this.user.user_type = res[0].USER_TYPE;
             this.user.confirmed = res[0].CONFIRMED;
             this.user.country_name = res[0].COUNTRY_NAME;
+            console.log(res[0].COUNTRY_NAME)
             this.user.image_path = res[0].IMAGE_PATH;
+            this.user.user_type = res[0].USER_TYPE;
             let user_string = JSON.stringify(this.user)
             localStorage.setItem('currentUser', user_string);
-            window.location.replace('/home')
-            //this.router.navigate(['/home']);
+            if (this.user.user_type== "Cliente"){
+              window.location.replace('/home')
+              //this.router.navigate(['/home']);
+            }else{
+              window.location.replace('/complains')
+              
+            }
+            
           }
         }else{
           this.createAlert()
