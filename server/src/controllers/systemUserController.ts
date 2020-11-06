@@ -15,12 +15,11 @@ class SystemUserController{
         var cn = db.db2()
         let params = [req.body.names, req.body.last_name, req.body.email, req.body.user_password, req.body.birthdate,
             req.body.user_type, req.body.country_name, req.body.image_path]
-
-        let sql = 'call insert_user (:A, :B, :C, :D, :E, :F, :G, :H)'
+        let sql = 'call insert_user(:A, :B, :C, :D, :E, :F, :G, :H)'
         console.log(params);
         await cn.exec(sql, params,(result:any, err:any)=>{
             if (err) throw err;
-            res.json(result);
+            res.json({"message":"registro exitoso"});
         });
     }
 
@@ -31,7 +30,7 @@ class SystemUserController{
             req.body.country_name, req.body.image_path, req.params.id]
         await cn.exec(sql, params, (result:any, err:any)=>{
             if (err) throw err;
-            res.json(result);
+            res.json({"message":"El usuario ha sido modificado con exito"});
         });
     }
 
@@ -47,7 +46,10 @@ class SystemUserController{
 
     async getOne(req:Request, res:Response){
         var cn = db.db2()
-        var sql = "select * from systemUser where idSystemUser = :A"
+        var sql = `
+        select * from systemUser s
+        inner join country c on c.idcountry = s.idcountry 
+        where idSystemUser = :A`
         var params = [req.params.id]
         await cn.exec(sql, params, (result:any, err:any)=>{
             if (err) throw err;

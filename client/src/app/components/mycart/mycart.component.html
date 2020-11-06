@@ -1,0 +1,29 @@
+<h4 *ngIf="products.length == 0">No ha agregado productos a su carro de compras</h4>
+<div class="col-md-12" *ngIf="products.length != 0">
+    <div class="row">
+        <div class="col float-right">
+            <button class="btn btn-success" type="btn btn-success"> Confirmar compra </button>
+        </div>
+        <div class="col float-right">
+            <button class="btn btn-danger" type="btn btn-danger" (click)="cleanCart()"> Limpiar carrito</button>
+        </div>
+    </div>
+</div>
+<div class="container"><p></p></div>
+<div class="row">
+    <div class="col-md-4" *ngFor = "let product of products">
+        <div class="card text-center shadow p-3 mb-5 bg-white rounded" *ngIf="product.VISIBLE_PUBLICATION == 'Y'">
+            <div class="card-header bg-dark text-white align-items-center">
+                <h3 *ngIf="product.VISIBLE_PUBLICATION == 'N'">Producto no disponible</h3>
+                <h4>{{product.PRODUCT_NAME}}</h4>
+            </div>
+            <img src="{{product.IMAGE_PATH}}" class="card-img-top">
+            <div class="card-body">
+                <h3>{{product.PRODUCT_DETAIL}}</h3>
+                <p class="font-weight-bold">Cantidad: {{product.CANTIDAD}}</p>
+                <p class="font-weight-bold">Total: Q {{product.TOTAL}}</p>
+                <a class="btn btn-info btn-block" [routerLink]="['/details', product.IDPUBLICATION]">Detalles del producto <i class="fas fa-info-circle"></i></a>
+            </div>
+        </div>
+    </div>
+</div>

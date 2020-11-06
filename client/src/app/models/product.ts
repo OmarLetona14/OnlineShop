@@ -10,4 +10,6 @@ export interface Product{
     publish_date?:string; 
     image_path?:string;
     visible_publication?:string;
+    cantidad?:number;
+    total?:string;
 }

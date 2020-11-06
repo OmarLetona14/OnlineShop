@@ -17,8 +17,8 @@ export class ComplainService {
     return this.http.get(this.API_URI + '/complain');
   }
 
-  acceptComplain(c: Complain){
-    return this.http.post(this.API_URI + '/complain', c);
+  acceptComplain(id:String){
+    return this.http.get(`${this.API_URI}/complain/${id}`);
   }
 
   saveComplain (c:Complain){

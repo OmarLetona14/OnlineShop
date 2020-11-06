@@ -9,6 +9,8 @@
             <select class="form-control form-control-sm" [(ngModel)]="categoryName" [ngModelOptions]="{standalone: true}" aria-placeholder="Categoria">
                 <option *ngFor="let category of categories">{{category.CATEGORY_NAME}}</option>
             </select>
+            <p></p>
+            <button class="btn btn-outline-success my-2 my-sm-0" type="btn btn-primary" (click)="searchByCategory()"> Search </button>
         </div>
         <div class="col float-right">
             <input class="form-control" type="search" placeholder="Search" aria-label="Search" autofocus>
@@ -17,11 +19,13 @@
 </div>
 <div class="container"><p></p></div>
 <div class="col-md-4" *ngFor = "let product of products">
+    <h4 *ngIf="empty">No hay productos disponibles</h4>
     <div class="card text-center shadow p-3 mb-5 bg-white rounded" *ngIf="product.VISIBLE_PUBLICATION == 'Y'">
         <div class="card-header bg-dark text-white align-items-center">
+            <h3 *ngIf="product.VISIBLE_PUBLICATION == 'N'">Producto no disponible</h3>
             <h4>{{product.PRODUCT_NAME}}  <button *ngIf= "user.idSystemUser == product.IDSYSTEMUSER" class="btn btn-danger" (click)="delete(product.IDPUBLICATION)">
                 <i class="fas fa-trash-alt"></i></button>
-                <button *ngIf= "user.idSystemUser != product.IDSYSTEMUSER" class="btn btn-danger" (click)="addToCart()">
+                <button *ngIf= "user.idSystemUser != product.IDSYSTEMUSER" class="btn btn-danger" data-toggle="modal" data-target="#cantidadModal">
                     <i class="fas fa-shopping-cart"></i></button>
             </h4>
         </div>
@@ -37,4 +41,29 @@
             </div>
         </div>
     </div>
+<div class="modal fade" id="cantidadModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Agregar al carrito</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="message-text" class="col-form-label">Cantidad:</label>
+              <input type="number" name="cantidad" id="cantidad" [(ngModel)]="cantidad" [ngModelOptions]="{standalone: true}">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)="addToShopingCart(product.IDPUBLICATION)">Agregar</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+

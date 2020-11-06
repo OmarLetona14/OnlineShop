@@ -3,10 +3,15 @@ export interface Complain{
     idpublication?: string;
     product_name?:string;
     image_path?:string;
-    idsystemuser?:string;
-    names?:string;
-    last_name?:string;
-    email?:string;
+    id_demandante?:string;
+    names_demandate?:string;
+    last_name_demandante?:string;
+    email_demandate?:string;
+    id_dueno?:string;
+    names_dueno?:string;
+    last_name_dueno?:string;
+    email_dueno?:string;
     reason?:string;
     checked?:string;
+    tm?:string;
 }

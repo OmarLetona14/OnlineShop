@@ -11,6 +11,9 @@ import keywordRoutes from './routes/keywordRoutes'
 import myproductsRoutes from './routes/myproductsRoutes'
 import likesRoutes from './routes/likeRoutes'
 import commentRoutes from './routes/commentRoutes'
+import complainRoutes from './routes/complainRoutes'
+import complainchangeRoutes from './routes/complainchangeRoutes'
+import shoppingCartRoutes from './routes/shoppingCartRoutes'
 
 class Server{
 
@@ -38,7 +41,10 @@ class Server{
         this.app.use('/api/keyword', keywordRoutes);
         this.app.use('/api/myproducts', myproductsRoutes);
         this.app.use('/api/likes', likesRoutes);
-        this.app.use('/api/comments', commentRoutes)
+        this.app.use('/api/comments', commentRoutes);
+        this.app.use('/api/complain', complainRoutes);
+        this.app.use('/api/complainchange', complainchangeRoutes);
+        this.app.use('/api/shoppingcart', shoppingCartRoutes);
     }
 
     start():void{

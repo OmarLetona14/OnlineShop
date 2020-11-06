@@ -59,10 +59,14 @@ export class ProductDetailComponent {
     idpublication: "",
     product_name: "",
     image_path: "",
-    idsystemuser: "",
-    names:"",
-    last_name:"",
-    email:"",
+    id_dueno: "",
+    names_dueno:"",
+    last_name_dueno:"",
+    email_dueno:"",
+    id_demandante: "",
+    names_demandate:"",
+    last_name_demandante:"",
+    email_demandate:"",
     reason:"",
     checked:""
   }
@@ -190,16 +194,21 @@ export class ProductDetailComponent {
   }
 
   complaintM(){
-    this.complain.idsystemuser = this.user.idSystemUser;
+    this.complain.id_demandante = this.user.idSystemUser;
     this.complain.idpublication = this.product.idPublication;
     this.complain.reason = this.commentComplain;
     delete this.complain.idcomplain;
     delete this.complain.product_name;
     delete this.complain.image_path;
-    delete this.complain.names;
-    delete this.complain.last_name;
-    delete this.complain.email;
+    delete this.complain.names_demandate;
+    delete this.complain.last_name_demandante;
+    delete this.complain.email_demandate;
+    delete this.complain.id_dueno;
+    delete this.complain.names_dueno;
+    delete this.complain.last_name_dueno;
+    delete this.complain.email_dueno;
     delete this.complain.checked;
+    delete this.complain.tm;
     this.complainService.saveComplain(this.complain).subscribe(
       res =>{
         console.log(res);

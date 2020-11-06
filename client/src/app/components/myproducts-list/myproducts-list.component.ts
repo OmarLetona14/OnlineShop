@@ -12,6 +12,7 @@ export class MyproductsListComponent implements OnInit {
   products:any = [];
   constructor(private myproductsService:MyproductsService){}
   user:User;
+  empty:boolean = false;
   getProducts():void{
     this.myproductsService.getAllProducts(this.user.idSystemUser).subscribe(
       res => {
@@ -22,7 +23,10 @@ export class MyproductsListComponent implements OnInit {
   }
   ngOnInit(): void {
     this.user = JSON.parse(localStorage.getItem("currentUser"))
-    this.getProducts()
+    this.getProducts();
+    if(this.products.length == 0){
+      this.empty = true;
+    }
   }
 
   delete(id:string){

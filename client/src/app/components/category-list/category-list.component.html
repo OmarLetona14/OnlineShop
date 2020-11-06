@@ -1,1 +1,11 @@
-<p>category-list works!</p>
+<div class="row">
+    <div class="col-md-4" *ngFor = "let category of categories">
+        <div class="card text-center shadow p-3 mb-5 bg-white rounded">
+            <div class="card-header bg-dark text-white align-items-center">
+                <h4>{{category.CATEGORY_NAME}}
+                </h4>
+            </div>
+        </div>
+    </div>
+</div>
+

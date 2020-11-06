@@ -1,7 +1,9 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
 import { Category } from 'src/app/models/category';
 import { Product } from 'src/app/models/product';
+import { ShoppingCart } from 'src/app/models/shoppingcart';
 import { CategoriesService } from 'src/app/services/categories.service';
+import { ShoppingcartService } from 'src/app/services/shoppingcart.service';
 import {User} from '../../models/user'
 import {ProductsService} from '../../services/products.service'
 
@@ -14,12 +16,20 @@ export class ProductsListComponent implements OnInit {
 
   @HostBinding('class') classes = 'row'
   products:any = [];
+  cantidad:string;
 
-  constructor(private productService:ProductsService, private categoryService:CategoriesService) { }
+  constructor(private productService:ProductsService, private categoryService:CategoriesService,
+    private cartService:ShoppingcartService) { }
 
+  cart:ShoppingCart = {
+    idsystemuser: "",
+    idpublication: "",
+    cantidad:""
+  };
   user:User;
   categories:any = [];
   categoryName:String;
+  empty:boolean = false;
 
   getCategories():void{
     this.categoryService.getCategories().subscribe(
@@ -31,6 +41,9 @@ export class ProductsListComponent implements OnInit {
       }
     );
   }
+  searchByCategory(){
+    
+  }
 
   getProducts():void{
     this.productService.getProducts().subscribe(
@@ -41,13 +54,27 @@ export class ProductsListComponent implements OnInit {
     );
   }
   ngOnInit(): void {
-    this.getProducts()
-    this.getCategories()
-    this.user = JSON.parse(localStorage.getItem("currentUser"))
+    this.getProducts();
+    this.getCategories();
+    this.user = JSON.parse(localStorage.getItem("currentUser"));
+    if (this.products.length >1){
+      this.empty = true;
+    }
   }
 
-  addToShopingCart(id:string){
-    
+  public addToShopingCart(id:string){
+    this.cart.idsystemuser = this.user.idSystemUser;
+    this.cart.idpublication = id;
+    this.cart.cantidad = this.cantidad;
+    this.cartService.saveMyProduct(this.cart).subscribe(
+      res => {
+        console.log(res);
+        
+      },
+      err =>{
+        console.error(err);
+      }
+    );
   }
 
   delete(id:string){

@@ -13,8 +13,6 @@ class ProductCategoryRoutes{
         this.router.get('/', categoryController.getAll);
         this.router.get('/:id', categoryController.getOne)
         this.router.post('/', categoryController.insert);
-        this.router.put('/:id', categoryController.edit);
-        this.router.delete('/:id', categoryController.delete)
     }
 
 }

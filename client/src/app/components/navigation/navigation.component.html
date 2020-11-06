@@ -18,23 +18,23 @@
             <li class="nav-item active" *ngIf = "user != null && user.user_type == 'Cliente'">
               <a class="nav-link" routerLinkActive="active" routerLink='/myproducts'><i class="fab fa-product-hunt"></i> Mis productos</a>
             </li>
-            <li class="nav-item active" *ngIf = "user != null">
-              <a class="nav-link" routerLinkActive="active" routerLink='/profile'><i class="fas fa-user"></i> Perfil</a>
-            </li>
             <li class="nav-item active" *ngIf = "user != null && user.user_type == 'Administrador'">
-              <a class="nav-link" routerLinkActive="active" routerLink='/profile'><i class="fas fa-list"></i> Categorias</a>
-            </li>
-            <li class="nav-item active" *ngIf = "user != null && user.user_type == 'Administrador'">
-              <a class="nav-link" routerLinkActive="active" routerLink='/categories/add'><i class="fas fa-plus-circle"></i> Agregar categoria</a>
+              <a class="nav-link" routerLinkActive="active" routerLink='/complains'><i class="fas fa-exclamation-triangle"></i> Quejas</a>
             </li>
             <li class="nav-item active" *ngIf = "user != null && user.user_type == 'Administrador'">
               <a class="nav-link" routerLinkActive="active" routerLink='/complains'><i class="fas fa-chart-line"></i> Reportes</a>
             </li>
             <li class="nav-item active" *ngIf = "user != null && user.user_type == 'Administrador'">
-              <a class="nav-link" routerLinkActive="active" routerLink='/complains'><i class="fas fa-exclamation-triangle"></i> Quejas</a>
+              <a class="nav-link" routerLinkActive="active" routerLink='/categories'><i class="fas fa-list"></i> Categorias</a>
+            </li>
+            <li class="nav-item active" *ngIf = "user != null && user.user_type == 'Administrador'">
+              <a class="nav-link" routerLinkActive="active" routerLink='/categories/add'><i class="fas fa-plus-circle"></i> Agregar categoria</a>
             </li>
             <li class="nav-item active" *ngIf = "user != null && user.user_type == 'Cliente'">
-              <a class="nav-link" routerLinkActive="active" routerLink='/profile'><i class="fas fa-shopping-cart"></i> Mi carrito</a>
+              <a class="nav-link" routerLinkActive="active" routerLink='/mycart'><i class="fas fa-shopping-cart"></i> Mi carrito</a>
+            </li>
+            <li class="nav-item active" *ngIf = "user != null">
+              <a class="nav-link" routerLinkActive="active" routerLink='/profile'><i class="fas fa-user"></i> Perfil</a>
             </li>
             <li class="nav-item active" *ngIf = "user != null">
               <a class="nav-link" routerLinkActive="active" (click)="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>

@@ -1,16 +1,17 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = require("express");
-class IndexRoutes {
-    constructor() {
+var express_1 = require("express");
+var IndexRoutes = /** @class */ (function () {
+    function IndexRoutes() {
         this.router = express_1.Router();
         this.config();
     }
-    config() {
-        this.router.get('/', (req, res) => {
+    IndexRoutes.prototype.config = function () {
+        this.router.get('/', function (req, res) {
             res.send('Hello');
         });
-    }
-}
-const indexRoutes = new IndexRoutes();
+    };
+    return IndexRoutes;
+}());
+var indexRoutes = new IndexRoutes();
 exports.default = indexRoutes.router;

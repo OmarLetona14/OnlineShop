@@ -3,32 +3,35 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = __importDefault(require("express"));
-const morgan_1 = __importDefault(require("morgan"));
-const cors_1 = __importDefault(require("cors"));
-const indexRoutes_1 = __importDefault(require("./routes/indexRoutes"));
-const systemUserRoutes_1 = __importDefault(require("./routes/systemUserRoutes"));
-const productRoutes_1 = __importDefault(require("./routes/productRoutes"));
-const productCategoryRoutes_1 = __importDefault(require("./routes/productCategoryRoutes"));
-const loginRoutes_1 = __importDefault(require("./routes/loginRoutes"));
-const keywordRoutes_1 = __importDefault(require("./routes/keywordRoutes"));
-const myproductsRoutes_1 = __importDefault(require("./routes/myproductsRoutes"));
-const likeRoutes_1 = __importDefault(require("./routes/likeRoutes"));
-const commentRoutes_1 = __importDefault(require("./routes/commentRoutes"));
-class Server {
-    constructor() {
+var express_1 = __importDefault(require("express"));
+var morgan_1 = __importDefault(require("morgan"));
+var cors_1 = __importDefault(require("cors"));
+var indexRoutes_1 = __importDefault(require("./routes/indexRoutes"));
+var systemUserRoutes_1 = __importDefault(require("./routes/systemUserRoutes"));
+var productRoutes_1 = __importDefault(require("./routes/productRoutes"));
+var productCategoryRoutes_1 = __importDefault(require("./routes/productCategoryRoutes"));
+var loginRoutes_1 = __importDefault(require("./routes/loginRoutes"));
+var keywordRoutes_1 = __importDefault(require("./routes/keywordRoutes"));
+var myproductsRoutes_1 = __importDefault(require("./routes/myproductsRoutes"));
+var likeRoutes_1 = __importDefault(require("./routes/likeRoutes"));
+var commentRoutes_1 = __importDefault(require("./routes/commentRoutes"));
+var complainRoutes_1 = __importDefault(require("./routes/complainRoutes"));
+var complainchangeRoutes_1 = __importDefault(require("./routes/complainchangeRoutes"));
+var shoppingCartRoutes_1 = __importDefault(require("./routes/shoppingCartRoutes"));
+var Server = /** @class */ (function () {
+    function Server() {
         this.app = express_1.default();
         this.config();
         this.routes();
     }
-    config() {
+    Server.prototype.config = function () {
         this.app.set('port', process.env.PORT || 3000);
         this.app.use(morgan_1.default('dev'));
         this.app.use(cors_1.default());
         this.app.use(express_1.default.json());
         this.app.use(express_1.default.urlencoded({ extended: true }));
-    }
-    routes() {
+    };
+    Server.prototype.routes = function () {
         this.app.use(indexRoutes_1.default);
         this.app.use('/api/users', systemUserRoutes_1.default);
         this.app.use('/api/products', productRoutes_1.default);
@@ -38,12 +41,16 @@ class Server {
         this.app.use('/api/myproducts', myproductsRoutes_1.default);
         this.app.use('/api/likes', likeRoutes_1.default);
         this.app.use('/api/comments', commentRoutes_1.default);
-    }
-    start() {
-        this.app.listen(this.app.get('port'), () => {
+        this.app.use('/api/complain', complainRoutes_1.default);
+        this.app.use('/api/complainchange', complainchangeRoutes_1.default);
+        this.app.use('/api/shoppingcart', shoppingCartRoutes_1.default);
+    };
+    Server.prototype.start = function () {
+        this.app.listen(this.app.get('port'), function () {
             console.log('Server is running...');
         });
-    }
-}
-const server = new Server();
+    };
+    return Server;
+}());
+var server = new Server();
 server.start();

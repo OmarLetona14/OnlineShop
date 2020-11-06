@@ -12,6 +12,8 @@ import {nodemailer} from 'nodemailer'
 import {MyproductsListComponent} from './components/myproducts-list/myproducts-list.component'
 import {ProductDetailComponent} from './components/product-detail/product-detail.component'
 import {AdminComplainComponent} from './components/admin-complain/admin-complain.component'
+import {CategoryListComponent} from './components/category-list/category-list.component'
+import {MycartComponent} from './components/mycart/mycart.component'
 
 const routes: Routes = [
   {
@@ -58,6 +60,14 @@ const routes: Routes = [
   {
     path: 'complains',
     component: AdminComplainComponent
+  },
+  {
+    path:'categories',
+    component:CategoryListComponent
+  },
+  {
+    path:'mycart',
+    component:MycartComponent
   }
 ];
 
