@@ -40,61 +40,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var database_1 = __importDefault(require("../config/database"));
-var ShoppingCartController = /** @class */ (function () {
-    function ShoppingCartController() {
+var FilterCategoryController = /** @class */ (function () {
+    function FilterCategoryController() {
     }
-    ShoppingCartController.prototype.insert = function (req, res) {
+    FilterCategoryController.prototype.getProductsCategory = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var cn, params, sql;
+            var cn;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         cn = database_1.default.db2();
-                        params = [req.body.idsystemuser, req.body.idpublication, req.body.cantidad];
-                        sql = "call add_to_cart(:A, :B, :C)";
-                        return [4 /*yield*/, cn.exec(sql, params, function (result, err) {
-                                if (err)
-                                    throw err;
-                                res.json({ "message:": "se agrego correctamente" });
-                            })];
-                    case 1:
-                        _a.sent();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    ShoppingCartController.prototype.delete = function (req, res) {
-        return __awaiter(this, void 0, void 0, function () {
-            var cn, params, sql;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        cn = database_1.default.db2();
-                        params = [req.params.id];
-                        sql = "call clean_cart(:A)";
-                        return [4 /*yield*/, cn.exec(sql, params, function (result, err) {
-                                if (err)
-                                    throw err;
-                                res.json({ "msg": "The cart was cleaned" });
-                            })];
-                    case 1:
-                        _a.sent();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    ShoppingCartController.prototype.getShoppigCart = function (req, res) {
-        return __awaiter(this, void 0, void 0, function () {
-            var cn, sql, params;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        cn = database_1.default.db2();
-                        sql = "\n        select p.idpublication, p.product_name, p.product_detail, p.price, pc.category_name, p.idsystemuser,\n        s.names, s.last_name, p.publish_date, p.image_path, p.visible_publication, sc.cantidad, sc.subtotal from cart c \n        inner join shopping_cart sc on c.idcart = sc.idcart\n        inner join publication p on sc.idpublication = p.idpublication\n        inner join product_category pc on pc.idproduct_category = p.idproduct_category\n        inner join systemuser s on s.idsystemuser = p.idsystemuser\n        where c.idsystemuser = :A";
-                        params = [req.params.id];
-                        return [4 /*yield*/, cn.exec(sql, params, function (result, err) {
+                        return [4 /*yield*/, cn.exec("select p.idPublication, p.product_name, p.product_detail, p.price, pc.category_name, s.idsystemuser, s.names, s.last_name, p.publish_date, p.image_path, p.visible_publication from publication p \n                inner join product_category pc on p.idproduct_category = pc.idproduct_category\n                inner join systemUser s on p.idsystemuser = s.idsystemuser \n                where pc.category_name = :A", [req.body.category_name], function (result, err) {
                                 if (err)
                                     throw err;
                                 res.json(result);
@@ -106,7 +62,7 @@ var ShoppingCartController = /** @class */ (function () {
             });
         });
     };
-    return ShoppingCartController;
+    return FilterCategoryController;
 }());
-var shoppingCartController = new ShoppingCartController();
-exports.default = shoppingCartController;
+var filterCategoryController = new FilterCategoryController();
+exports.default = filterCategoryController;

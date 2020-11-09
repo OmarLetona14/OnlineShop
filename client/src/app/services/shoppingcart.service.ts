@@ -3,7 +3,6 @@ import  {HttpClient} from '@angular/common/http'
 import {ShoppingCart} from '../models/shoppingcart'
 import { Observable } from 'rxjs';
 
-
 @Injectable({
   providedIn: 'root'
 })

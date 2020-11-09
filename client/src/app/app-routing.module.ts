@@ -14,6 +14,7 @@ import {ProductDetailComponent} from './components/product-detail/product-detail
 import {AdminComplainComponent} from './components/admin-complain/admin-complain.component'
 import {CategoryListComponent} from './components/category-list/category-list.component'
 import {MycartComponent} from './components/mycart/mycart.component'
+import {MybillComponent} from './components/mybill/mybill.component'
 
 const routes: Routes = [
   {
@@ -68,6 +69,10 @@ const routes: Routes = [
   {
     path:'mycart',
     component:MycartComponent
+  },
+  {
+    path:'mybill',
+    component:MybillComponent
   }
 ];
 

@@ -47,9 +47,9 @@
       </div>
       <p></p>
       <h2>Comentarios</h2>
+      <h4 *ngIf="comments.length == 0"> <strong>Esta publicacion aun no tiene comentarios </strong></h4>
       <div class="container" *ngFor="let comment of comments">
           <div class="card rounded">
-                <h4 *ngIf="comments.length == 0"> <strong>Esta publicacion aun no tiene comentarios </strong></h4>
                 <div class="card-header bg-dark text-white align-items-center">
                   <div class="card-title">
                     <h4><strong>Usuario:</strong> {{comment.NAMES}} {{comment.LAST_NAME}}</h4> 

@@ -14,6 +14,11 @@ import commentRoutes from './routes/commentRoutes'
 import complainRoutes from './routes/complainRoutes'
 import complainchangeRoutes from './routes/complainchangeRoutes'
 import shoppingCartRoutes from './routes/shoppingCartRoutes'
+import descPriceRoutes from './routes/desPriceRoutes'
+import ascPriceRoutes from './routes/ascPriceRoutes'
+import filterCategoryRoutes from './routes/filterCategoryRoutes'
+import billRoutes from './routes/billRoutes'
+import billDetailRoutes from './routes/billDetailRoutes'
 
 class Server{
 
@@ -45,6 +50,11 @@ class Server{
         this.app.use('/api/complain', complainRoutes);
         this.app.use('/api/complainchange', complainchangeRoutes);
         this.app.use('/api/shoppingcart', shoppingCartRoutes);
+        this.app.use('/api/descprice', descPriceRoutes);
+        this.app.use('/api/ascprice', ascPriceRoutes);
+        this.app.use('/api/filtercategory', filterCategoryRoutes);
+        this.app.use('/api/bill', billRoutes);
+        this.app.use('/api/billdetails', billDetailRoutes);
     }
 
     start():void{

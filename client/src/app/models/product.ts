@@ -11,5 +11,5 @@ export interface Product{
     image_path?:string;
     visible_publication?:string;
     cantidad?:number;
-    total?:string;
+    subtotal?:string;
 }

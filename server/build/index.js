@@ -18,6 +18,11 @@ var commentRoutes_1 = __importDefault(require("./routes/commentRoutes"));
 var complainRoutes_1 = __importDefault(require("./routes/complainRoutes"));
 var complainchangeRoutes_1 = __importDefault(require("./routes/complainchangeRoutes"));
 var shoppingCartRoutes_1 = __importDefault(require("./routes/shoppingCartRoutes"));
+var desPriceRoutes_1 = __importDefault(require("./routes/desPriceRoutes"));
+var ascPriceRoutes_1 = __importDefault(require("./routes/ascPriceRoutes"));
+var filterCategoryRoutes_1 = __importDefault(require("./routes/filterCategoryRoutes"));
+var billRoutes_1 = __importDefault(require("./routes/billRoutes"));
+var billDetailRoutes_1 = __importDefault(require("./routes/billDetailRoutes"));
 var Server = /** @class */ (function () {
     function Server() {
         this.app = express_1.default();
@@ -44,6 +49,11 @@ var Server = /** @class */ (function () {
         this.app.use('/api/complain', complainRoutes_1.default);
         this.app.use('/api/complainchange', complainchangeRoutes_1.default);
         this.app.use('/api/shoppingcart', shoppingCartRoutes_1.default);
+        this.app.use('/api/descprice', desPriceRoutes_1.default);
+        this.app.use('/api/ascprice', ascPriceRoutes_1.default);
+        this.app.use('/api/filtercategory', filterCategoryRoutes_1.default);
+        this.app.use('/api/bill', billRoutes_1.default);
+        this.app.use('/api/billdetails', billDetailRoutes_1.default);
     };
     Server.prototype.start = function () {
         this.app.listen(this.app.get('port'), function () {

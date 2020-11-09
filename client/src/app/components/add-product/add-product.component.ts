@@ -119,7 +119,7 @@ export class AddProductComponent implements OnInit {
         this.getPublication()
         console.log(this.idpublication)
         setTimeout(this.insertKeywords, 3000)
-        
+        this.router.navigate(['/myproducts']);
       },
       err =>{
         console.error(err)

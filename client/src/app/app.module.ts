@@ -24,6 +24,7 @@ import { AdminComplainComponent } from './components/admin-complain/admin-compla
 import { CategoryListComponent } from './components/category-list/category-list.component';
 import { ShoppingcartComponent } from './services/shoppingcart/shoppingcart.component';
 import { MycartComponent } from './components/mycart/mycart.component';
+import { MybillComponent } from './components/mybill/mybill.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { MycartComponent } from './components/mycart/mycart.component';
     AdminComplainComponent,
     CategoryListComponent,
     ShoppingcartComponent,
-    MycartComponent
+    MycartComponent,
+    MybillComponent
   ],
   imports: [
     BrowserModule,
