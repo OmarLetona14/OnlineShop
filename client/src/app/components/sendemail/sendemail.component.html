@@ -1,0 +1,20 @@
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <h2>Recuperacion de password</h2>
+        <div class="card border-0">
+            <div class="card-body">
+                <form>
+                    <div class="form-group">
+                        <label class="" for=""> Ingrese su correo </label>
+                        <input type="email" name="" id="" placeholder="Email" [(ngModel)]="recovery.email" [ngModelOptions]="{standalone: true}" >
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-danger" (click)="send()"> Enviar correo </button>
+                    </div>
+                    <p>Se enviara un correo a su buzon con las instrucciones de recuperacion de passowrd</p>
+                    <div class="form-group" id="alert_send"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

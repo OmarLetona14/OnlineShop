@@ -15,6 +15,10 @@ import {AdminComplainComponent} from './components/admin-complain/admin-complain
 import {CategoryListComponent} from './components/category-list/category-list.component'
 import {MycartComponent} from './components/mycart/mycart.component'
 import {MybillComponent} from './components/mybill/mybill.component'
+import {LogListComponent} from './components/log-list/log-list.component'
+import {SendemailComponent} from './components/sendemail/sendemail.component'
+import {ChangePasswordComponent} from './components/change-password/change-password.component'
+import {ConfirmationComponent} from './components/confirmation/confirmation.component'
 
 const routes: Routes = [
   {
@@ -73,6 +77,22 @@ const routes: Routes = [
   {
     path:'mybill',
     component:MybillComponent
+  },
+  {
+    path:'log',
+    component:LogListComponent
+  },
+  {
+    path:'sendemail',
+    component:SendemailComponent
+  }, 
+  {
+    path:'changepassword/:id',
+    component:ChangePasswordComponent
+  },
+  {
+    path:'confirmation/:id',
+    component:ConfirmationComponent
   }
 ];
 

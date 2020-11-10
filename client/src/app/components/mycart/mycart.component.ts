@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Bill } from 'src/app/models/bill';
+import { Log } from 'src/app/models/log';
 import { User } from 'src/app/models/user';
 import { BillService } from 'src/app/services/bill.service';
+import { LogService } from 'src/app/services/log.service';
 import { ShoppingcartService } from 'src/app/services/shoppingcart.service';
 
 @Component({
@@ -23,8 +25,16 @@ export class MycartComponent implements OnInit {
     date:"",
     total:""
   };
-
-  constructor(private cartService:ShoppingcartService, private billService:BillService, private router:Router) { }
+  log:Log = {
+    idLog: "",
+    idsystemuser:"",
+    email:"",
+    action:"",
+    datetime:""
+  };
+  total:number = 0;
+  constructor(private cartService:ShoppingcartService, private billService:BillService, private router:Router,
+    private logService:LogService) { }
   buying:boolean =false;
 
   ngOnInit(): void {
@@ -37,11 +47,20 @@ export class MycartComponent implements OnInit {
     this.cartService.getMyShoppingCart(this.user.idSystemUser).subscribe(
       res =>{
         this.products = res;
+        this.getTotal();
       },
       err => {
         console.error(err);
       }
     );
+  }
+
+  getTotal(){
+    this.products.forEach(element => {
+      if (element != undefined || element!= null){
+        this.total += element.PRICE * element.CANTIDAD;
+      }
+    });
   }
 
   cleanCart():void{
@@ -52,6 +71,22 @@ export class MycartComponent implements OnInit {
           window.location.replace('/mycart')
         }
         this.buying = false;
+      },
+      err =>{
+        console.error(err);
+      }
+    );
+  }
+
+  saveLog(id:string){
+    delete this.log.idLog;
+    delete this.log.email;
+    delete this.log.datetime;
+    this.log.idsystemuser = id;
+    this.log.action = 'Compro productos'
+    this.logService.saveLog(this.log).subscribe(
+      res =>{
+        console.log(res);
       },
       err =>{
         console.error(err);
@@ -70,8 +105,8 @@ export class MycartComponent implements OnInit {
     this.billService.saveBill(this.bill).subscribe(
       res =>{
         console.log(res);
+        this.saveLog(this.user.idSystemUser);
         this.buying = true;
-        this.cleanCart();
         this.router.navigate(['/mybill']);
       },
       err =>{

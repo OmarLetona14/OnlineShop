@@ -1,0 +1,18 @@
+<table class="table table-striped" *ngIf="logs.length != 0">
+    <thead>
+      <tr>
+        <th scope="col">Usuario</th>
+        <th scope="col">Accion</th>
+        <th scope="col">Fecha y hora</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let log of logs">
+        <td>{{log.EMAIL}}</td>
+        <td>{{log.ACTION}}</td>
+        <td>{{log.DATE_TIME  | date: 'yyyy-MM-dd HH:mm'}}</td>
+      </tr>
+    </tbody>
+</table>
+<div class="container"><p></p></div>
+<h4 *ngIf="logs.length == 0">No hay bitacoras nuevas</h4>

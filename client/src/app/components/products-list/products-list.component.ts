@@ -170,7 +170,7 @@ export class ProductsListComponent implements OnInit {
     this.cartService.saveMyProduct(this.cart).subscribe(
       res => {
         console.log(res);
-
+        this.router.navigate(['/mycart']);
       },
       err =>{
         console.error(err);

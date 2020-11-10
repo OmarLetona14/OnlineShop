@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {UsersService} from '../../services/users.service'
 import {User} from '../../models/user'
 import { Router } from '@angular/router';
+import { LogService } from 'src/app/services/log.service';
+import { convertActionBinding } from '@angular/compiler/src/compiler_util/expression_converter';
+import { Log } from 'src/app/models/log';
 
 @Component({
   selector: 'app-user-profile',
@@ -23,8 +26,16 @@ export class UserProfileComponent {
     image_path: ""
   }
   show:boolean = false;
+  log:Log = {
+    idLog: "",
+    idsystemuser:"",
+    email:"",
+    action:"",
+    datetime:""
+  };
 
-  constructor(private usersService:UsersService, private router:Router) { }
+  constructor(private usersService:UsersService, private router:Router, 
+    private logService:LogService) { }
 
   ngOnInit(): void {
     this.user = JSON.parse(localStorage.getItem('currentUser'));
@@ -95,12 +106,29 @@ export class UserProfileComponent {
             this.user.user_type = res[0].USER_TYPE;
             let user_string = JSON.stringify(this.user)
             localStorage.setItem('currentUser', user_string);
+            this.saveLog(id);
           },
           err=>{
             console.error(err);
           }
         )
         this.router.navigate(['/profile']);
+      },
+      err =>{
+        console.error(err);
+      }
+    );
+  }
+
+  saveLog(id:string){
+    delete this.log.idLog;
+    delete this.log.email;
+    delete this.log.datetime;
+    this.log.idsystemuser = id;
+    this.log.action = 'Actualizo su perfil'
+    this.logService.saveLog(this.log).subscribe(
+      res =>{
+        console.log(res);
       },
       err =>{
         console.error(err);

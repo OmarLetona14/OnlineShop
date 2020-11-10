@@ -25,6 +25,10 @@ import { CategoryListComponent } from './components/category-list/category-list.
 import { ShoppingcartComponent } from './services/shoppingcart/shoppingcart.component';
 import { MycartComponent } from './components/mycart/mycart.component';
 import { MybillComponent } from './components/mybill/mybill.component';
+import { LogListComponent } from './components/log-list/log-list.component';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
+import { SendemailComponent } from './components/sendemail/sendemail.component';
+import { ConfirmationComponent } from './components/confirmation/confirmation.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +48,11 @@ import { MybillComponent } from './components/mybill/mybill.component';
     CategoryListComponent,
     ShoppingcartComponent,
     MycartComponent,
-    MybillComponent
+    MybillComponent,
+    LogListComponent,
+    ChangePasswordComponent,
+    SendemailComponent,
+    ConfirmationComponent
   ],
   imports: [
     BrowserModule,

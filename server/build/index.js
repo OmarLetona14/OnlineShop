@@ -23,6 +23,13 @@ var ascPriceRoutes_1 = __importDefault(require("./routes/ascPriceRoutes"));
 var filterCategoryRoutes_1 = __importDefault(require("./routes/filterCategoryRoutes"));
 var billRoutes_1 = __importDefault(require("./routes/billRoutes"));
 var billDetailRoutes_1 = __importDefault(require("./routes/billDetailRoutes"));
+var logRoutes_1 = __importDefault(require("./routes/logRoutes"));
+var emailRoutes_1 = __importDefault(require("./routes/emailRoutes"));
+var userValidationRoutes_1 = __importDefault(require("./routes/userValidationRoutes"));
+var recoveryRoutes_1 = __importDefault(require("./routes/recoveryRoutes"));
+var emailComplainRoutes_1 = __importDefault(require("./routes/emailComplainRoutes"));
+var emailConfirmationRoutes_1 = __importDefault(require("./routes/emailConfirmationRoutes"));
+var confirmRoutes_1 = __importDefault(require("./routes/confirmRoutes"));
 var Server = /** @class */ (function () {
     function Server() {
         this.app = express_1.default();
@@ -54,6 +61,13 @@ var Server = /** @class */ (function () {
         this.app.use('/api/filtercategory', filterCategoryRoutes_1.default);
         this.app.use('/api/bill', billRoutes_1.default);
         this.app.use('/api/billdetails', billDetailRoutes_1.default);
+        this.app.use('/api/log', logRoutes_1.default);
+        this.app.use('/api/email', emailRoutes_1.default);
+        this.app.use('/api/uservalidation', userValidationRoutes_1.default);
+        this.app.use('/api/recovery', recoveryRoutes_1.default);
+        this.app.use('/api/notifycomplain', emailComplainRoutes_1.default);
+        this.app.use('/api/confirmation', emailConfirmationRoutes_1.default);
+        this.app.use('/api/confirm', confirmRoutes_1.default);
     };
     Server.prototype.start = function () {
         this.app.listen(this.app.get('port'), function () {

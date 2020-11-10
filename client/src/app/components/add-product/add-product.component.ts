@@ -8,6 +8,9 @@ import { KeywordService } from 'src/app/services/keyword.service';
 import { User } from 'src/app/models/user';
 import {MyproductsService} from '../../services/myproducts.service'
 import { Observable } from 'rxjs';
+import { Log } from 'src/app/models/log';
+import { LogService } from 'src/app/services/log.service';
+import { EmailsenderService } from 'src/app/services/emailsender.service';
 
 @Component({
   selector: 'app-add-product',
@@ -50,12 +53,19 @@ export class AddProductComponent implements OnInit {
     idkeyword:"",
     idpublication: ""
   }
+  log:Log = {
+    idLog: "",
+    idsystemuser:"",
+    email:"",
+    action:"",
+    datetime:""
+  };
   public keyword_str:string
   public keywords: string[] = [];
 
 
   constructor(private categoriesService:CategoriesService, private productsService:ProductsService, private router:Router, private activedRoute:ActivatedRoute,
-    private keywordsService:KeywordService, private myproductsService:MyproductsService) { }
+    private keywordsService:KeywordService, private myproductsService:MyproductsService, private logService:LogService, private emailService:EmailsenderService) { }
 
   ngOnInit(): void {
     this.user = JSON.parse(localStorage.getItem('currentUser'));
@@ -82,6 +92,22 @@ export class AddProductComponent implements OnInit {
         }
       )
     }
+  }
+
+  saveLog(id:string){
+    delete this.log.idLog;
+    delete this.log.email;
+    delete this.log.datetime;
+    this.log.idsystemuser = id;
+    this.log.action = 'Agrego un producto'
+    this.logService.saveLog(this.log).subscribe(
+      res =>{
+        console.log(res);
+      },
+      err =>{
+        console.error(err);
+      }
+    );
   }
 
   addKeyword(){
@@ -119,6 +145,7 @@ export class AddProductComponent implements OnInit {
         this.getPublication()
         console.log(this.idpublication)
         setTimeout(this.insertKeywords, 3000)
+        this.saveLog(this.user.idSystemUser);
         this.router.navigate(['/myproducts']);
       },
       err =>{

@@ -13,11 +13,42 @@
             <div class="form-group">
                 <a routerLink = '/register'>No tienes un usuario? registrate aqui</a>
             </div>
-            <button type="submit" class="btn btn-primary" (click)="login()">Submit</button>
+            <div class="form-group">
+                <a routerLink='/sendemail' > Recuperar mi password </a>
+            </div>
+            <button class="btn btn-primary" (click)="login()">Iniciar sesion</button>
             <p></p>
             <div class="form-group" id="alert_login">
             </div>
         </form>
     </div>
+</div>
+
+<div class="container">
+  <div class="modal fade" id="recuperarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" appendTo="body">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Recuperacion del password</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="message-text" class="col-form-label">Correo:</label>
+              <input type="text" name="" id="" class="form-control">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <p>Se enviara un correo a su buzon para poder recuperar su password</p>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Enviar email</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 

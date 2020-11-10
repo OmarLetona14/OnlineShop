@@ -1,3 +1,5 @@
+<h4> <strong>Creditos disponibles: Q {{user.credits}}</strong> </h4>
+<p></p>
 <table class="table table-striped" *ngIf="products.length != 0">
     <thead>
       <tr>
@@ -20,6 +22,11 @@
       </tr>
     </tbody>
 </table>
+<div class="row">
+  <div class="col float-right">
+    <h2> <strong>Total : Q {{total}}</strong> </h2>
+  </div>
+</div>
 <div class="container"><p></p></div>
 <h4 *ngIf="products.length == 0">No ha agregado productos a su carro de compras</h4>
 <div class="col-md-12" *ngIf="products.length != 0">

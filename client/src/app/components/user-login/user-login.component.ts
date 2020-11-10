@@ -10,13 +10,13 @@ import {LoginService} from '../../services/login.service'
   templateUrl: './user-login.component.html',
   styleUrls: ['./user-login.component.css']
 })
-export class UserLoginComponent implements OnInit {
+export class UserLoginComponent{
 
   log:Login = {
     email: "",
     user_password: ""
   }
-
+  email:string = "";
   user:User ={
     names: "",
     last_name: "",
@@ -33,6 +33,10 @@ export class UserLoginComponent implements OnInit {
   constructor(private loginService:LoginService, private router:Router) { }
 
   ngOnInit(): void {
+  }
+
+  public sendEmail(){
+
   }
 
   login():void{

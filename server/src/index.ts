@@ -19,6 +19,13 @@ import ascPriceRoutes from './routes/ascPriceRoutes'
 import filterCategoryRoutes from './routes/filterCategoryRoutes'
 import billRoutes from './routes/billRoutes'
 import billDetailRoutes from './routes/billDetailRoutes'
+import logRoutes from './routes/logRoutes'
+import emailRoutes from './routes/emailRoutes'
+import userValidationRoutes from './routes/userValidationRoutes'
+import recoveryRoutes from './routes/recoveryRoutes'
+import emailComplainRoutes from './routes/emailComplainRoutes'
+import emailConfirmationRoutes from './routes/emailConfirmationRoutes'
+import confirmRoutes from './routes/confirmRoutes'
 
 class Server{
 
@@ -55,6 +62,13 @@ class Server{
         this.app.use('/api/filtercategory', filterCategoryRoutes);
         this.app.use('/api/bill', billRoutes);
         this.app.use('/api/billdetails', billDetailRoutes);
+        this.app.use('/api/log', logRoutes);
+        this.app.use('/api/email', emailRoutes);
+        this.app.use('/api/uservalidation', userValidationRoutes);
+        this.app.use('/api/recovery', recoveryRoutes);
+        this.app.use('/api/notifycomplain', emailComplainRoutes);
+        this.app.use('/api/confirmation', emailConfirmationRoutes);
+        this.app.use('/api/confirm', confirmRoutes);
     }
 
     start():void{
