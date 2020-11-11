@@ -26,6 +26,10 @@ import recoveryRoutes from './routes/recoveryRoutes'
 import emailComplainRoutes from './routes/emailComplainRoutes'
 import emailConfirmationRoutes from './routes/emailConfirmationRoutes'
 import confirmRoutes from './routes/confirmRoutes'
+import userInsertedRoutes from './routes/userInsertedRoutes'
+import mostSelledRoutes from './routes/mostSelledRoutes'
+import mostComplainedRoutes from './routes/mostComplainedRoutes'
+import mostPublicatedRoutes from './routes/mostPublicatedRoutes'
 
 class Server{
 
@@ -69,6 +73,10 @@ class Server{
         this.app.use('/api/notifycomplain', emailComplainRoutes);
         this.app.use('/api/confirmation', emailConfirmationRoutes);
         this.app.use('/api/confirm', confirmRoutes);
+        this.app.use('/api/userinserted', userInsertedRoutes);
+        this.app.use('/api/mostselled', mostSelledRoutes);
+        this.app.use('/api/mostcomplained',mostComplainedRoutes);
+        this.app.use('/api/mostpublicated', mostPublicatedRoutes);
     }
 
     start():void{

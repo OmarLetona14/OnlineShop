@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <form>
+                <div class="form-group">
+                    <select class="form-control" [(ngModel)]="report_type" [ngModelOptions]="{standalone: true}">
+                        <option>Reporte de bitacora</option>
+                        <option value="">Top 10 productos mas vendidos</option>
+                        <option value="">Top 10 productos con mas me gusta</option>
+                        <option value="">Top 10 productos con mas no me gusta</option>
+                        <option value="">Top 10 clientes con mas  y menos creditos</option>
+                        <option value="">Top 10 clientes que mas denuncias han hecho</option>
+                        <option value="">Top 10 clientes que mas publicaciones han hecho</option>
+                        <option value="">Top 10 de paises con mas credito y productos a la venta</option>
+                    </select>
+                </div>
+            </form>
+        </div>  
+        <div class="col">
+            <form>
+                <div class="form-group">
+                    <button class="btn btn-success" (click)="generateReport()">Generar reporte</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

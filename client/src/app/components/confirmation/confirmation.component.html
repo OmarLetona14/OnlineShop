@@ -4,7 +4,7 @@
             <div class="card-body">
                 <form>
                     <div class="form-group">
-                        <h1>Su cuenta ha sido confirmada con exito!</h1>
+                        <h1 *ngIf="confirmed">Su cuenta ha sido confirmada con exito!</h1>
                     </div>
                     <div class="form-group">
                         <a class="btn btn-success" routerLink = "/login">Iniciar sesion</a>

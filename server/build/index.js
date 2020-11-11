@@ -30,6 +30,10 @@ var recoveryRoutes_1 = __importDefault(require("./routes/recoveryRoutes"));
 var emailComplainRoutes_1 = __importDefault(require("./routes/emailComplainRoutes"));
 var emailConfirmationRoutes_1 = __importDefault(require("./routes/emailConfirmationRoutes"));
 var confirmRoutes_1 = __importDefault(require("./routes/confirmRoutes"));
+var userInsertedRoutes_1 = __importDefault(require("./routes/userInsertedRoutes"));
+var mostSelledRoutes_1 = __importDefault(require("./routes/mostSelledRoutes"));
+var mostComplainedRoutes_1 = __importDefault(require("./routes/mostComplainedRoutes"));
+var mostPublicatedRoutes_1 = __importDefault(require("./routes/mostPublicatedRoutes"));
 var Server = /** @class */ (function () {
     function Server() {
         this.app = express_1.default();
@@ -68,6 +72,10 @@ var Server = /** @class */ (function () {
         this.app.use('/api/notifycomplain', emailComplainRoutes_1.default);
         this.app.use('/api/confirmation', emailConfirmationRoutes_1.default);
         this.app.use('/api/confirm', confirmRoutes_1.default);
+        this.app.use('/api/userinserted', userInsertedRoutes_1.default);
+        this.app.use('/api/mostselled', mostSelledRoutes_1.default);
+        this.app.use('/api/mostcomplained', mostComplainedRoutes_1.default);
+        this.app.use('/api/mostpublicated', mostPublicatedRoutes_1.default);
     };
     Server.prototype.start = function () {
         this.app.listen(this.app.get('port'), function () {

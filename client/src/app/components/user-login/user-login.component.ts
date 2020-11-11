@@ -43,7 +43,7 @@ export class UserLoginComponent{
     this.loginService.doLogin(this.log).subscribe(
       res =>{
         if (res[0] != null){
-          if (res[0].CONFIRMED == 'N'){
+          if (res[0].CONFIRMED == 'Y'){
             this.user.idSystemUser = res[0].IDSYSTEMUSER;
             this.user.names = res[0].NAMES;
             this.user.last_name = res[0].LAST_NAME;
@@ -64,12 +64,12 @@ export class UserLoginComponent{
               //this.router.navigate(['/home']);
             }else{
               window.location.replace('/complains')
-              
-            }
-            
+            }      
+          }else{
+            this.createAlert('Su cuenta aun no ha sido confirmada', false);
           }
         }else{
-          this.createAlert()
+          this.createAlert('Credenciales incorrectas', false);
         }
       },
       err =>{
@@ -78,7 +78,7 @@ export class UserLoginComponent{
     )
   }
 
-  createAlert(){
+  createAlert(text:string, success:boolean){
     let alt = document.getElementById('alert_login');
     if (alt.childElementCount < 1){
         let alert_nocredentials = document.createElement('div')
@@ -97,8 +97,12 @@ export class UserLoginComponent{
       btn.setAttribute('data-dismiss','alert');
       btn.setAttribute('aria-label', 'Close');
       btn.appendChild(span)
-      strong.textContent = 'Credenciales incorrectas'
-      alert_nocredentials.setAttribute('class', 'alert alert-warning alert-dismissible fade show')
+      strong.textContent = text
+      if(success){
+        alert_nocredentials.setAttribute('class', 'alert alert-success alert-dismissible fade show')
+      }else{
+        alert_nocredentials.setAttribute('class', 'alert alert-warning alert-dismissible fade show')
+      }  
       alert_nocredentials.setAttribute('role','alert')
       alert_nocredentials.appendChild(strong)
       alert_nocredentials.appendChild(btn)

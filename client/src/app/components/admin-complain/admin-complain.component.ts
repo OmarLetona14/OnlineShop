@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Recovery } from 'src/app/models/recovery';
 import { ComplainService } from 'src/app/services/complain.service';
+import { EmailcomplainService } from 'src/app/services/emailcomplain.service';
 
 @Component({
   selector: 'app-admin-complain',
@@ -9,10 +11,15 @@ import { ComplainService } from 'src/app/services/complain.service';
 })
 export class AdminComplainComponent {
 
-  constructor(private complainsService:ComplainService, private router:Router) { }
+  constructor(private complainsService:ComplainService, private router:Router,
+    private emailComplainService:EmailcomplainService) { }
 
   complains:any = [];
   empty:boolean = false;
+  recovery:Recovery={
+    idsystemuser:"",
+    email:""
+  };
 
   ngOnInit(): void {
     this.getComplains()
@@ -61,10 +68,20 @@ export class AdminComplainComponent {
     );
   }
 
-  acceptComplain(id:string){
+  acceptComplain(id:string, email:string){
     this.complainsService.acceptComplain(id).subscribe(
       res=>{
-        window.location.replace('/complains')
+        delete this.recovery.idsystemuser;
+        this.recovery.email = email;
+        this.emailComplainService.sendComplainEmail(this.recovery).subscribe(
+          res => {
+            console.log(res);
+            window.location.replace('/complains')
+          },
+          err =>{
+            console.error(err);
+          }
+        );
       },
       err=>{
         console.error(err);

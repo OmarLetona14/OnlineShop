@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
 import  {HttpClient} from '@angular/common/http'
-import { Observable } from 'rxjs';
+import { Recovery } from '../models/recovery';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ConfirmService {
+export class EmailcomplainService {
 
   API_URI = 'http://localhost:3000/api'
 
   constructor(private http:HttpClient) { }
 
-  confirmUser(id: string){
-    return this.http.get(`${this.API_URI}/confirm/${id}`);
+  public sendComplainEmail(r:Recovery){
+    return this.http.post(this.API_URI + '/notifycomplain', r);
   }
 }

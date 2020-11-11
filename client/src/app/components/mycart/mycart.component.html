@@ -1,4 +1,4 @@
-<h4> <strong>Creditos disponibles: Q {{user.credits}}</strong> </h4>
+<h4 > <strong>Creditos disponibles: Q {{user.credits}}</strong> </h4>
 <p></p>
 <table class="table table-striped" *ngIf="products.length != 0">
     <thead>
@@ -24,7 +24,7 @@
 </table>
 <div class="row">
   <div class="col float-right">
-    <h2> <strong>Total : Q {{total}}</strong> </h2>
+    <h2 *ngIf="products.length != 0"> <strong>Total : Q {{total}}</strong> </h2>
   </div>
 </div>
 <div class="container"><p></p></div>

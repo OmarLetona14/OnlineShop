@@ -19,6 +19,7 @@ import {LogListComponent} from './components/log-list/log-list.component'
 import {SendemailComponent} from './components/sendemail/sendemail.component'
 import {ChangePasswordComponent} from './components/change-password/change-password.component'
 import {ConfirmationComponent} from './components/confirmation/confirmation.component'
+import {ReportsComponent} from './components/reports/reports.component'
 
 const routes: Routes = [
   {
@@ -93,6 +94,10 @@ const routes: Routes = [
   {
     path:'confirmation/:id',
     component:ConfirmationComponent
+  },
+  {
+    path:'reports',
+    component:ReportsComponent
   }
 ];
 

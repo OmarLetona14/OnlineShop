@@ -142,45 +142,38 @@ export class AddProductComponent implements OnInit {
     this.product.idSystemUser = Number.parseInt(this.user.idSystemUser);
     await this.productsService.saveProduct(this.product).subscribe(
       res=>{
-        this.getPublication()
-        console.log(this.idpublication)
-        setTimeout(this.insertKeywords, 3000)
-        this.saveLog(this.user.idSystemUser);
-        this.router.navigate(['/myproducts']);
+        this.myproductsService.getLastInserted(this.product).subscribe(
+          res =>{
+            this.idpublication = res[0].IDPUBLICATION;
+            if(res[0]!=null){
+              console.log(this.idpublication)
+              for (let i = 0; i<this.keywords.length; i++) {
+                this.key.word = this.keywords[i];
+                this.key.idpublication = this.idpublication
+                this.keywordsService.saveKeyword(this.key).subscribe(
+                  res => {
+                    console.log(res);
+                  },
+                  err =>{
+                    console.error(err);
+                  }
+                );
+              }
+              this.saveLog(this.user.idSystemUser);
+              this.router.navigate(['/myproducts']);
+            }
+            console.log(res)    
+          },
+          err=>{
+            console.error(err);
+          }
+        ); 
       },
       err =>{
         console.error(err)
       }
     )
     console.log(this.product)
-  }
-
-  public insertKeywords(){
-    for (let i = 0; i<this.keywords.length; i++) {
-      this.key.word = this.keywords[i];
-      this.key.idpublication = this.idpublication
-      this.keywordsService.saveKeyword(this.key).subscribe(
-        res => {
-          console.log(res);
-        },
-        err =>{
-          console.error(err);
-        }
-      );
-      this.router.navigate(['/home'])
-    }
-  }
-
-  getPublication():void{
-     this.myproductsService.getLastInserted(this.product).subscribe(
-          res =>{
-            this.idpublication = res[0];
-            console.log(res)
-            
-          },
-          err=>{
-            console.error(err);
-       }
-    )
+   
   }
 }
